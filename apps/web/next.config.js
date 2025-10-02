@@ -1,17 +1,4 @@
-import type { NextConfig } from "next";
-// @ts-ignore
-import withPWA from "next-pwa";
-
-const nextConfig: NextConfig = {
-  /* config options here */
-  experimental: {
-    // Enable experimental features for better mobile experience
-    optimizeCss: true,
-  },
-  // PWA configuration will be added by withPWA wrapper
-};
-
-export default withPWA({
+const withPWA = require("next-pwa")({
   dest: "public",
   register: true,
   skipWaiting: true,
@@ -64,4 +51,11 @@ export default withPWA({
       },
     },
   ],
-})(nextConfig);
+});
+
+const nextConfig = {
+  /* config options here */
+  // PWA configuration will be added by withPWA wrapper
+};
+
+module.exports = withPWA(nextConfig);
