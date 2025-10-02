@@ -194,7 +194,7 @@ export default function LightsPage() {
         <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white">
             {/* Header */}
             <div className="flex items-center justify-between p-4 bg-black/20 backdrop-blur-sm">
-                <Link href="/" className="text-2xl">←</Link>
+                <Link href="/home" className="text-2xl">←</Link>
                 <h1 className="text-xl font-semibold">Lights</h1>
                 <div className="flex items-center gap-2">
                     <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-green-400' : 'bg-red-400'}`}></div>

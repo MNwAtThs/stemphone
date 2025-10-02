@@ -66,6 +66,18 @@
     ],
     "shortcuts": [
         {
+            "name": "Home",
+            "short_name": "Home",
+            "description": "Main app interface",
+            "url": "/home",
+            "icons": [
+                {
+                    "src": "/icon-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
             "name": "Music",
             "short_name": "Music",
             "description": "Play music and audio",

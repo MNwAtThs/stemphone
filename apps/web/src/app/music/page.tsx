@@ -115,7 +115,7 @@ export default function MusicPage() {
         <div className="min-h-screen bg-gradient-to-br from-purple-900 via-pink-900 to-red-900 text-white">
             {/* Header */}
             <div className="flex items-center justify-between p-4 bg-black/20 backdrop-blur-sm">
-                <Link href="/" className="text-2xl">←</Link>
+                <Link href="/home" className="text-2xl">←</Link>
                 <h1 className="text-xl font-semibold">Music</h1>
                 <div className="w-8"></div>
             </div>
@@ -199,8 +199,8 @@ export default function MusicPage() {
                             key={track.id}
                             onClick={() => playTrack(track)}
                             className={`w-full p-4 rounded-xl text-left transition-all duration-200 ${currentTrack?.id === track.id
-                                    ? 'bg-white/20 border-2 border-white/40'
-                                    : 'bg-white/10 hover:bg-white/15'
+                                ? 'bg-white/20 border-2 border-white/40'
+                                : 'bg-white/10 hover:bg-white/15'
                                 }`}
                         >
                             <div className="flex items-center space-x-4">

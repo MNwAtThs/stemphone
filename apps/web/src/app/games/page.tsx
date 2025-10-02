@@ -7,7 +7,7 @@ export default function GamesPage() {
         <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 text-white">
             {/* Header */}
             <div className="flex items-center justify-between p-4 bg-black/20 backdrop-blur-sm">
-                <Link href="/" className="text-2xl">←</Link>
+                <Link href="/home" className="text-2xl">←</Link>
                 <h1 className="text-xl font-semibold">Games</h1>
                 <div className="w-8"></div>
             </div>
