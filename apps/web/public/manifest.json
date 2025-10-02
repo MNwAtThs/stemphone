@@ -1,0 +1,54 @@
+{
+    "name": "Stemphone",
+    "short_name": "Stemphone",
+    "description": "Stemphone - Modern communication platform",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "orientation": "portrait",
+    "categories": [
+        "communication",
+        "productivity"
+    ],
+    "icons": [
+        {
+            "src": "/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable any"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Dialer",
+            "short_name": "Dial",
+            "description": "Open phone dialer",
+            "url": "/dialer",
+            "icons": [
+                {
+                    "src": "/icon-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "Contacts",
+            "short_name": "Contacts",
+            "description": "View contacts",
+            "url": "/contacts",
+            "icons": [
+                {
+                    "src": "/icon-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ]
+}

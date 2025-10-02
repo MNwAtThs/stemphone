@@ -1,0 +1,127 @@
+version: '3.8'
+
+services:
+  # MQTT Broker (Eclipse Mosquitto)
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: stemphone-mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    environment:
+      - MOSQUITTO_USERNAME=stemphone
+      - MOSQUITTO_PASSWORD=stemphone123
+    networks:
+      - stemphone-network
+
+  # Realtime Service (Node.js + Socket.IO)
+  realtime:
+    build:
+      context: ../services/realtime
+      dockerfile: Dockerfile
+    container_name: stemphone-realtime
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - CORS_ORIGIN=http://localhost:3000,http://localhost:8080
+      - MQTT_BROKER_URL=mqtt://mosquitto:1883
+      - MQTT_USERNAME=stemphone
+      - MQTT_PASSWORD=stemphone123
+    depends_on:
+      - mosquitto
+    networks:
+      - stemphone-network
+    volumes:
+      - ../services/realtime/logs:/app/logs
+
+  # TURN Server (coturn)
+  coturn:
+    image: coturn/coturn:4.6.2
+    container_name: stemphone-coturn
+    restart: unless-stopped
+    ports:
+      - "3478:3478/udp"
+      - "3478:3478/tcp"
+      - "5349:5349/udp"
+      - "5349:5349/tcp"
+      - "49152-65535:49152-65535/udp"
+    volumes:
+      - ../services/turn/turnserver.conf:/etc/coturn/turnserver.conf:ro
+      - coturn-data:/var/lib/turn
+    networks:
+      - stemphone-network
+    command: ["-c", "/etc/coturn/turnserver.conf"]
+
+  # Reverse Proxy (Nginx) - Optional
+  nginx:
+    image: nginx:alpine
+    container_name: stemphone-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./nginx/logs:/var/log/nginx
+    depends_on:
+      - realtime
+    networks:
+      - stemphone-network
+    profiles:
+      - proxy
+
+  # Redis (for session storage and caching) - Optional
+  redis:
+    image: redis:7-alpine
+    container_name: stemphone-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - stemphone-network
+    profiles:
+      - cache
+
+  # PostgreSQL (for persistent data) - Optional
+  postgres:
+    image: postgres:15-alpine
+    container_name: stemphone-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=stemphone
+      - POSTGRES_USER=stemphone
+      - POSTGRES_PASSWORD=stemphone123
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d
+    networks:
+      - stemphone-network
+    profiles:
+      - database
+
+networks:
+  stemphone-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  coturn-data:
+  redis-data:
+  postgres-data:
+
