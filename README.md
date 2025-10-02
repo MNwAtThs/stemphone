@@ -6,7 +6,17 @@
 [![Next.js](https://img.shields.io/badge/Next.js-15+-black.svg)](https://nextjs.org/)
 [![Tauri](https://img.shields.io/badge/Tauri-2.0+-orange.svg)](https://tauri.app/)
 
-Interactive iPhone-like kiosk application for the **San Antonio Museum of Science and Technology**. Transforms the existing [stemphone.org](https://stemphone.org) into a robust, user-proof, sandboxed environment for museum visitors.
+Interactive iPhone-like kiosk application for the **San Antonio Museum of Science and Technology**. Transforms the existing [stemphone.org](https://stemphone.org) WordPress site into a robust, user-proof, sandboxed environment designed for hundreds of daily museum visitor interactions.
+
+## 🎯 Project Purpose
+
+Stemphone replaces the current WordPress-based stemphone.org with a modern kiosk system that:
+
+- **Museum-Ready**: Handles high-traffic public use at SAMSAT
+- **User-Proof**: Sandboxed environment prevents system access
+- **iPhone Experience**: Familiar interface with app tiles and smooth animations
+- **Hardware Integration**: Controls ESP32-powered LED lights via MQTT
+- **Cross-Platform**: Runs on Windows, macOS, and Linux kiosk systems
 
 ## 🚀 Quick Start
 
@@ -34,25 +44,41 @@ stemphone/
     └── docker-compose.yml  # MQTT, services, proxy
 ```
 
-## ✅ Current Status
+## ✅ Development Status
 
-- **Phase 0:** ✅ Monorepo foundation and infrastructure
-- **Phase 1:** ✅ iPhone-like PWA with Music and Lights apps
-- **Auto-Lock:** ✅ Configurable timeout (30sec - 15min)
+### Phase 0 — Foundations ✅ COMPLETE
+- Monorepo structure with apps/, services/, and infra/
+- Docker infrastructure with MQTT, realtime services
+- Development environment ready
+
+### Phase 1 — Web PWA Shell ✅ COMPLETE  
+- iPhone-like home screen with lock screen
+- Music app with Howler.js audio engine (single-track enforcement)
+- Lights app with ESP32 integration ready
+- Auto-lock with configurable timeout (30sec - 15min)
+- PWA installation and offline capabilities
+
+### Phase 2 — Next Steps 🔄
+- Hardware integration with ESP32 via Tauri shell
+- Additional museum apps and interactive features
 
 ## 🎯 Key Features
 
-### Web App (PWA)
-- iPhone-style lock screen and home interface
-- Music app with Howler.js audio engine
-- Lights app with ESP32 integration ready
-- Auto-lock with configurable timeout
-- Offline-first PWA capabilities
+### Web App (PWA) - Phase 1 Complete ✅
+- **Lock Screen**: Elegant entry point with real-time clock and museum branding
+- **Home Screen**: iPhone-style 4x2 app grid with large touch targets
+- **Music App**: Howler.js audio engine with single-track enforcement
+- **Lights App**: ESP32 LED control with 8 colors + 4 preset modes
+- **Auto-Lock**: Configurable timeout (30sec-15min) with activity detection
+- **Settings**: Full configuration interface for auto-lock and system info
+- **PWA Ready**: Installable, offline-first, standalone mode
 
-### Hardware Integration
-- ESP32 LED control via MQTT
-- Tauri shell for kiosk deployment
-- Cross-platform (Windows/macOS/Linux)
+### Hardware & Infrastructure
+- **ESP32 Integration**: MQTT communication for LED light control
+- **Kiosk Mode**: Tauri shell for secure fullscreen deployment
+- **Real-time Services**: Socket.IO for communication, presence, PTT
+- **TURN Server**: WebRTC support for future voice/video features
+- **Docker Infrastructure**: MQTT broker, services, reverse proxy
 
 ## 🛠️ Development
 
@@ -72,16 +98,34 @@ npm run build
 
 ## 🏛️ Museum Deployment
 
-**Hardware Requirements:**
-- Intel i3+ CPU, 4GB+ RAM, 32GB+ SSD
-- Touchscreen display (1920x1080 recommended)
-- Network connection for ESP32 communication
+### Hardware Requirements
+- **CPU**: Intel i3+ or AMD Ryzen 3+
+- **RAM**: 4GB minimum, 8GB recommended  
+- **Storage**: 32GB SSD minimum
+- **Display**: 1920x1080 touchscreen
+- **Network**: Ethernet or WiFi for ESP32 communication
 
-**Security Features:**
-- Kiosk mode with system lockdown
-- Auto-lock after inactivity
-- User-proof interface design
-- Comprehensive .gitignore for sensitive data
+### Security & Kiosk Features
+- **Auto-lock**: Returns to lock screen after inactivity
+- **Fullscreen mode**: No access to underlying OS
+- **User-proof design**: Large touch targets, simple navigation
+- **System lockdown**: Disables shortcuts and system access
+- **Remote monitoring**: Health checks and logging
+
+### ESP32 LED Integration
+```bash
+# MQTT Topics for LED Control
+stemphone/lights/scene      # Set color scenes (red, blue, etc.)
+stemphone/lights/brightness # Adjust brightness (0-100%)
+stemphone/lights/mode       # Preset modes (party, relax, focus)
+```
+
+## 🧪 Testing
+
+1. **Development**: `npm run dev:web` → http://localhost:3000
+2. **PWA Install**: Look for install icon in browser address bar
+3. **Auto-Lock**: Go to Settings → Configure timeout → Test inactivity
+4. **ESP32 Commands**: Check browser console in Lights app for MQTT commands
 
 ## 📄 License
 
