@@ -62,6 +62,48 @@ stemphone/
 - Hardware integration with ESP32 via Tauri shell
 - Additional museum apps and interactive features
 
+## 🛠️ Technology Stack & Why
+
+### Our Choice: Tauri + Next.js Hybrid
+
+**Why This Combination?**
+- **Tauri Shell**: Rust-based security with native system control for kiosk mode
+- **Next.js Web App**: Modern React framework for rapid UI development
+- **TypeScript**: Type safety reduces bugs in high-traffic public environment
+- **Tailwind CSS**: Utility-first CSS for consistent iPhone-like UI
+
+### Architecture Decision Comparison
+
+| Approach | Pros | Cons | Museum Fit |
+|----------|------|------|------------|
+| **Pure Web App** | Easy updates, familiar tech | Browser access risk, less secure | ❌ Security concerns |
+| **Electron App** | Web tech, desktop app | Large bundle, known vulnerabilities | ⚠️ Security risks |
+| **Native Apps** | Maximum performance | Platform-specific code, high maintenance | ❌ Too complex |
+| **Tauri Hybrid** ✅ | Secure, small bundle, web tech | Newer ecosystem | ✅ Perfect for kiosks |
+
+### Key Advantages for SAMSAT
+
+1. **Security & Sandboxing**
+   - Tauri's Rust backend provides memory safety
+   - Web content runs in isolated context
+   - No direct system access for users
+   - Automatic updates without system compromise
+
+2. **Cross-Platform Deployment**
+   - Single codebase for Windows, macOS, Linux
+   - Consistent experience across different kiosk hardware
+   - Easy deployment to various museum setups
+
+3. **Hardware Integration**
+   - MQTT broker for ESP32 LED communication
+   - Real-time WebSocket connections
+   - Modular architecture for future hardware additions
+
+4. **Maintainability**
+   - Modern web technologies familiar to developers
+   - Component-based architecture for easy app additions
+   - Docker containerization for consistent deployments
+
 ## 🎯 Key Features
 
 ### Web App (PWA) - Phase 1 Complete ✅
