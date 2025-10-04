@@ -255,12 +255,17 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
     );
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white flex flex-col relative overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
-            </div>
-
+        <div
+            className="min-h-screen text-white flex flex-col relative"
+            style={{
+                backgroundImage: 'url(/Background.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center top',
+                backgroundRepeat: 'no-repeat',
+                backgroundAttachment: 'fixed',
+                minHeight: '300vh'
+            }}
+        >
             {/* Status Bar */}
             <StatusBar />
 
@@ -303,7 +308,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
 
                 {/* Dock */}
                 <div className="px-6 pb-8">
-                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4">
+                    <div className="bg-black/20 rounded-2xl p-4">
                         <div className="flex justify-center space-x-8">
                             <a href="/home" className="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-white/10 transition-colors">
                                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-2xl">
@@ -328,6 +333,11 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                         </div>
                     </div>
                 </div>
+
+                {/* Extra space to show full background image */}
+                <div className="h-screen"></div>
+                <div className="h-screen"></div>
+                <div className="h-screen"></div>
             </div>
         </div>
     );

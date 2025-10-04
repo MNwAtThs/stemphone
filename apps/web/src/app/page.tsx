@@ -45,29 +45,16 @@ export default function LockScreen() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white flex flex-col relative overflow-hidden">
-            {/* Animated Background */}
-            <div className="absolute inset-0">
-                {/* Floating particles - only render on client */}
-                <div className="absolute inset-0">
-                    {isClient && particles.map((particle, i) => (
-                        <div
-                            key={i}
-                            className="absolute w-2 h-2 bg-white/20 rounded-full animate-pulse"
-                            style={{
-                                left: particle.left,
-                                top: particle.top,
-                                animationDelay: particle.delay,
-                                animationDuration: particle.duration
-                            }}
-                        />
-                    ))}
-                </div>
-
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"></div>
-            </div>
-
+        <div
+            className="min-h-screen text-white flex flex-col relative overflow-hidden"
+            style={{
+                backgroundImage: 'url(/Background.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center top',
+                backgroundRepeat: 'no-repeat',
+                backgroundAttachment: 'fixed'
+            }}
+        >
             {/* Content */}
             <div className="relative z-10 flex-1 flex flex-col">
                 {/* Status Bar */}
