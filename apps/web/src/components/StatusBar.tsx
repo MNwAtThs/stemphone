@@ -46,7 +46,7 @@ export function StatusBar() {
     }, []);
 
     return (
-        <div className="flex justify-between items-center px-6 py-3 text-sm relative z-20 max-w-4xl mx-auto">
+        <div className="flex justify-between items-center px-6 py-3 text-sm relative z-20 max-w-6xl mx-auto">
             {/* Left side - Time and Date */}
             <div className="flex items-center gap-3">
                 <div className="bg-white rounded-2xl px-6 py-3 shadow-lg ring-2 ring-gray-300 ring-inset">
@@ -65,7 +65,7 @@ export function StatusBar() {
             </div>
 
             {/* Right side - Status Bar Image */}
-            <div className="flex items-center mt-2 ml-20">
+            <div className="flex items-center mt-2 ml-32">
                 <Image
                     src="/statusbar.png"
                     alt="Status Bar"
