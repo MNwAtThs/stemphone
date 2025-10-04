@@ -1,0 +1,12 @@
+HTTrack3.49-2+htsswf+htsjava launched on Sat, 04 Oct 2025 12:36:51 at https://stemphone.org/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://stemphone.org/ -O1 "C:\My Web Sites\stemphone" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+12:38:08	Error: 	"Method Not Allowed" (405) at link https://stemphone.org/xmlrpc.php (from https://stemphone.org/)
+
+HTTrack Website Copier/3.49-2 mirror complete in 1 minutes 19 seconds : 234 links scanned, 232 files written (107272739 bytes overall) [105420967 bytes received at 1334442 bytes/sec], 2683441 bytes transferred using HTTP compression in 42 files, ratio 26%, 21.3 requests per connection
+(1 errors, 0 warnings, 0 messages)

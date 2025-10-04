@@ -35,7 +35,7 @@ const apps: AppTile[] = [
         icon: '🎮',
         href: '/games',
         gradient: 'from-purple-500 to-indigo-500',
-        description: 'Interactive games'
+        description: 'STEM educational games'
     },
     {
         id: 'camera',
@@ -59,7 +59,7 @@ const apps: AppTile[] = [
         icon: '🧮',
         href: '/calculator',
         gradient: 'from-slate-600 to-slate-700',
-        description: 'Math calculations'
+        description: 'Scientific calculator'
     },
     {
         id: 'weather',
@@ -67,7 +67,15 @@ const apps: AppTile[] = [
         icon: '🌤️',
         href: '/weather',
         gradient: 'from-blue-500 to-cyan-500',
-        description: 'Weather forecast'
+        description: 'Weather & science facts'
+    },
+    {
+        id: 'periodic-table',
+        name: 'Elements',
+        icon: '⚛️',
+        href: '/periodic-table',
+        gradient: 'from-indigo-500 to-purple-500',
+        description: 'Periodic table explorer'
     },
     {
         id: 'settings',
