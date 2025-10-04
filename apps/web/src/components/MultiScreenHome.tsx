@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { StatusBar } from '@/components/StatusBar';
+import Image from 'next/image';
 
 interface AppTile {
     id: string;
@@ -21,68 +22,124 @@ interface HomeScreen {
 // Original Stemphone.org Apps (Screen 1)
 const originalApps: AppTile[] = [
     {
-        id: 'jigsaw',
-        name: 'Jigsaw',
-        icon: '🧩',
-        href: '/jigsaw',
-        gradient: 'from-yellow-600 to-orange-600',
-        description: 'Jigsaw puzzle game'
+        id: 'stem-superstars',
+        name: 'STEM Superstars',
+        icon: '/stem-superstars.png',
+        href: '/stem-superstars',
+        gradient: 'from-blue-500 to-purple-600',
+        description: 'STEM education platform'
     },
     {
-        id: 'sudoku',
-        name: 'Sudoku',
-        icon: '🔢',
-        href: '/sudoku',
-        gradient: 'from-orange-600 to-red-600',
-        description: 'Number puzzle game'
+        id: 'nasa',
+        name: 'NASA',
+        icon: '/nasa.png',
+        href: '/nasa',
+        gradient: 'from-gray-800 to-blue-900',
+        description: 'NASA space exploration'
     },
     {
-        id: 'mahjong',
-        name: 'Mahjong',
-        icon: '🀄',
-        href: '/mahjong',
-        gradient: 'from-green-600 to-emerald-600',
-        description: 'Tile matching game'
+        id: 'ieee',
+        name: 'IEEE',
+        icon: '/ieee.png',
+        href: '/ieee',
+        gradient: 'from-blue-600 to-indigo-700',
+        description: 'IEEE engineering society'
     },
     {
-        id: 'quiz',
-        name: 'Quiz',
-        icon: '❓',
-        href: '/quiz',
-        gradient: 'from-orange-500 to-yellow-500',
+        id: 'music',
+        name: 'Music',
+        icon: '/music.png',
+        href: '/music',
+        gradient: 'from-pink-500 to-red-500',
+        description: 'Music and audio player'
+    },
+    {
+        id: 'photos',
+        name: 'Photos',
+        icon: '/photos.png',
+        href: '/photos',
+        gradient: 'from-green-500 to-emerald-500',
+        description: 'Photo gallery'
+    },
+    {
+        id: 'videos',
+        name: 'Videos',
+        icon: '/videos.png',
+        href: '/videos',
+        gradient: 'from-red-500 to-pink-500',
+        description: 'Video player'
+    },
+    {
+        id: 'quizzes',
+        name: 'Quizzes',
+        icon: '/quizzes.png',
+        href: '/quizzes',
+        gradient: 'from-purple-500 to-indigo-500',
         description: 'Educational quizzes'
     },
     {
-        id: 'utsa',
-        name: 'UTSA',
-        icon: '🏫',
-        href: '/utsa',
-        gradient: 'from-orange-600 to-blue-800',
-        description: 'University connection'
+        id: 'robot',
+        name: 'Robot',
+        icon: '/robot.png',
+        href: '/robot',
+        gradient: 'from-gray-600 to-slate-700',
+        description: 'Robot control'
     },
     {
-        id: 'morse-code',
-        name: 'Morse',
-        icon: '📡',
-        href: '/morse-code',
-        gradient: 'from-gray-600 to-slate-700',
+        id: 'morsecode',
+        name: 'Morse Code',
+        icon: '/morsecode.png',
+        href: '/morsecode',
+        gradient: 'from-blue-600 to-cyan-600',
         description: 'Morse code translator'
+    },
+    {
+        id: 'calculator',
+        name: 'Calculator',
+        icon: '/calculator.png',
+        href: '/calculator',
+        gradient: 'from-slate-600 to-gray-700',
+        description: 'Scientific calculator'
+    },
+    {
+        id: 'games',
+        name: 'Games',
+        icon: '/games.png',
+        href: '/games',
+        gradient: 'from-purple-500 to-indigo-500',
+        description: 'Educational games'
+    },
+    {
+        id: 'dataflow',
+        name: 'Data Flow',
+        icon: '/dataflow.png',
+        href: '/dataflow',
+        gradient: 'from-teal-500 to-cyan-500',
+        description: 'Data visualization'
+    },
+    {
+        id: 'donate',
+        name: 'Donate',
+        icon: '/donate.png',
+        href: '/donate',
+        gradient: 'from-green-500 to-emerald-500',
+        description: 'Support the project'
     },
     {
         id: 'flashlight',
         name: 'Flashlight',
-        icon: '🔦',
+        icon: '/flashlight.png',
         href: '/flashlight',
         gradient: 'from-yellow-400 to-yellow-600',
         description: 'Screen flashlight'
     },
     {
-        id: 'google-search',
-        name: 'Search',
-        icon: '🔍',
-        href: '/search',
-        gradient: 'from-blue-500 to-green-500',
-        description: 'Web search'
+        id: 'utsa-interns',
+        name: 'UTSA Interns',
+        icon: '/utsa.png',
+        href: '/utsa-interns',
+        gradient: 'from-orange-600 to-blue-800',
+        description: 'UTSA internship program'
     }
 ];
 
@@ -220,13 +277,25 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                     <div className="relative">
                         {/* Icon Background */}
                         <div className={`
-                            w-48 h-48 rounded-3xl bg-gradient-to-br ${app.gradient}
-                            flex items-center justify-center text-9xl
+                            w-48 h-48 rounded-3xl
+                            flex items-center justify-center
                             shadow-lg group-hover:shadow-xl
                             transition-all duration-200
                             ${pressedApp === app.id ? 'brightness-90' : ''}
                         `}>
-                            {app.icon}
+                            {app.icon.startsWith('/') ? (
+                                <Image
+                                    src={app.icon}
+                                    alt={app.name}
+                                    width={192}
+                                    height={192}
+                                    className="w-48 h-48 object-contain rounded-3xl"
+                                />
+                            ) : (
+                                <div className={`w-48 h-48 rounded-3xl bg-gradient-to-br ${app.gradient} flex items-center justify-center`}>
+                                    <span className="text-9xl">{app.icon}</span>
+                                </div>
+                            )}
                         </div>
 
                         {/* Shine effect */}
@@ -266,11 +335,13 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                 minHeight: '300vh'
             }}
         >
-            {/* Status Bar */}
-            <StatusBar />
-
             {/* Main Content */}
             <div className="flex-1 flex flex-col relative z-10">
+                {/* Status Bar */}
+                <div className="pt-8 pb-4">
+                    <StatusBar />
+                </div>
+
                 {/* Screens Container */}
                 <div className="flex-1 px-6 overflow-hidden">
                     <div
