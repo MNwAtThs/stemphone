@@ -338,12 +338,12 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
             {/* Main Content */}
             <div className="flex-1 flex flex-col relative z-10">
                 {/* Status Bar */}
-                <div className="pt-4 pb-2">
+                <div className="pt-20 pb-8">
                     <StatusBar />
                 </div>
 
                 {/* Screens Container */}
-                <div className="flex-1 px-6 overflow-hidden pt-8">
+                <div className="flex-1 px-6 overflow-hidden pt-16">
                     <div
                         className="flex h-full transition-transform duration-300 ease-out"
                         style={{
