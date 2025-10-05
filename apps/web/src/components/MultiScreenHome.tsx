@@ -256,7 +256,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
     };
 
     const AppGridComponent = ({ apps }: { apps: AppTile[] }) => (
-        <div className="grid grid-cols-4 gap-8 w-full max-w-7xl mx-auto px-8">
+        <div className="grid grid-cols-4 gap-16 w-fit mx-auto">
             {apps.map((app) => (
                 <a
                     key={app.id}
@@ -277,7 +277,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                     <div className="relative">
                         {/* Icon Background */}
                         <div className={`
-                            w-48 h-48 rounded-3xl
+                            w-56 h-56 rounded-3xl
                             flex items-center justify-center
                             shadow-lg group-hover:shadow-xl
                             transition-all duration-200
@@ -287,12 +287,12 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                                 <Image
                                     src={app.icon}
                                     alt={app.name}
-                                    width={192}
-                                    height={192}
-                                    className="w-48 h-48 object-contain rounded-3xl"
+                                    width={224}
+                                    height={224}
+                                    className="w-56 h-56 object-contain rounded-3xl"
                                 />
                             ) : (
-                                <div className={`w-48 h-48 rounded-3xl bg-gradient-to-br ${app.gradient} flex items-center justify-center`}>
+                                <div className={`w-56 h-56 rounded-3xl bg-gradient-to-br ${app.gradient} flex items-center justify-center`}>
                                     <span className="text-9xl">{app.icon}</span>
                                 </div>
                             )}
@@ -308,8 +308,8 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                     </div>
 
                     {/* App Name */}
-                    <div className="mt-6 text-center">
-                        <span className="text-white text-2xl font-medium leading-tight block">
+                    <div className="mt-8 text-center">
+                        <span className="text-white text-3xl font-medium leading-tight block">
                             {app.name}
                         </span>
                     </div>
@@ -338,12 +338,12 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
             {/* Main Content */}
             <div className="flex-1 flex flex-col relative z-10">
                 {/* Status Bar */}
-                <div className="pt-8 pb-4">
+                <div className="pt-4 pb-2">
                     <StatusBar />
                 </div>
 
                 {/* Screens Container */}
-                <div className="flex-1 px-6 overflow-hidden">
+                <div className="flex-1 px-6 overflow-hidden pt-8">
                     <div
                         className="flex h-full transition-transform duration-300 ease-out"
                         style={{
@@ -377,38 +377,78 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                     ))}
                 </div>
 
-                {/* Dock */}
-                <div className="px-6 pb-8">
-                    <div className="bg-black/20 rounded-2xl p-4">
-                        <div className="flex justify-center space-x-8">
-                            <a href="/home" className="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-white/10 transition-colors">
-                                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-2xl">
-                                    🏠
+                {/* Navigation Dots and Dock */}
+                <div className="px-12 pt-96 pb-8">
+                    {/* Screen Indicator Dots */}
+                    <div className="flex justify-center space-x-2 py-4">
+                        {homeScreens.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => goToScreen(index)}
+                                className={`w-2 h-2 rounded-full transition-all duration-200 ${index === currentScreen
+                                    ? 'bg-white scale-125'
+                                    : 'bg-white/40 hover:bg-white/60'
+                                    }`}
+                            />
+                        ))}
+                    </div>
+
+                    <div className="bg-white/10 backdrop-blur-md rounded-3xl p-4 border border-white/20 shadow-2xl">
+                        <div className="flex justify-center space-x-16">
+                            <a href="/phone" className="flex flex-col items-center gap-4 p-4 rounded-2xl hover:bg-white/20 transition-all duration-200">
+                                <div className="w-56 h-56 rounded-3xl flex items-center justify-center">
+                                    <Image
+                                        src="/phone.png"
+                                        alt="Phone"
+                                        width={224}
+                                        height={224}
+                                        className="w-56 h-56 object-contain rounded-3xl"
+                                    />
                                 </div>
-                                <span className="text-xs text-gray-300">Home</span>
+                                <span className="text-3xl text-white font-medium">Phone</span>
                             </a>
 
-                            <a href="/music" className="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-white/10 transition-colors">
-                                <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-500 rounded-xl flex items-center justify-center text-2xl">
-                                    🎵
+                            <a href="/facetime" className="flex flex-col items-center gap-4 p-4 rounded-2xl hover:bg-white/20 transition-all duration-200">
+                                <div className="w-56 h-56 rounded-3xl flex items-center justify-center">
+                                    <Image
+                                        src="/facetime.png"
+                                        alt="FaceTime"
+                                        width={224}
+                                        height={224}
+                                        className="w-56 h-56 object-contain rounded-3xl"
+                                    />
                                 </div>
-                                <span className="text-xs text-gray-300">Music</span>
+                                <span className="text-3xl text-white font-medium">FaceTime</span>
                             </a>
 
-                            <a href="/lights" className="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-white/10 transition-colors">
-                                <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center text-2xl">
-                                    💡
+                            <a href="/messages" className="flex flex-col items-center gap-4 p-4 rounded-2xl hover:bg-white/20 transition-all duration-200">
+                                <div className="w-56 h-56 rounded-3xl flex items-center justify-center">
+                                    <Image
+                                        src="/messages.png"
+                                        alt="Messages"
+                                        width={224}
+                                        height={224}
+                                        className="w-56 h-56 object-contain rounded-3xl"
+                                    />
                                 </div>
-                                <span className="text-xs text-gray-300">Lights</span>
+                                <span className="text-3xl text-white font-medium">Messages</span>
+                            </a>
+
+                            <a href="/mail" className="flex flex-col items-center gap-4 p-4 rounded-2xl hover:bg-white/20 transition-all duration-200">
+                                <div className="w-56 h-56 rounded-3xl flex items-center justify-center">
+                                    <Image
+                                        src="/mail.png"
+                                        alt="Mail"
+                                        width={224}
+                                        height={224}
+                                        className="w-56 h-56 object-contain rounded-3xl"
+                                    />
+                                </div>
+                                <span className="text-3xl text-white font-medium">Mail</span>
                             </a>
                         </div>
                     </div>
                 </div>
-
-                {/* Extra space to show full background image */}
-                <div className="h-screen"></div>
-                <div className="h-screen"></div>
-                <div className="h-screen"></div>
             </div>
         </div>
     );
