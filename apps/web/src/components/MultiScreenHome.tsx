@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { StatusBar } from '@/components/StatusBar';
+import { AppPopup } from '@/components/AppPopup';
 import Image from 'next/image';
 
 interface AppTile {
@@ -238,40 +239,31 @@ interface MultiScreenHomeProps {
 
 export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
     const [currentScreen, setCurrentScreen] = useState(0);
-    const [pressedApp, setPressedApp] = useState<string | null>(null);
-    const handleAppPress = (appId: string) => {
-        setPressedApp(appId);
-        // Haptic feedback if available
-        if ('vibrate' in navigator) {
-            navigator.vibrate(10);
-        }
-    };
-
-    const handleAppRelease = () => {
-        setPressedApp(null);
-    };
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const goToScreen = (screenIndex: number) => {
         setCurrentScreen(screenIndex);
     };
 
+    const handleAppClick = (app: AppTile) => {
+        if (app.id === 'stem-superstars') {
+            setIsPopupOpen(true);
+        } else {
+            window.location.href = app.href;
+        }
+    };
+
     const AppGridComponent = ({ apps }: { apps: AppTile[] }) => (
         <div className="grid grid-cols-4 gap-16 w-fit mx-auto">
             {apps.map((app) => (
-                <a
+                <div
                     key={app.id}
-                    href={app.href}
+                    onClick={() => handleAppClick(app)}
                     className={`
-                        relative group block
+                        relative group block cursor-pointer
                         transform transition-all duration-150 ease-out
-                        ${pressedApp === app.id ? 'scale-95' : 'hover:scale-105'}
-                        active:scale-95
+                        hover:scale-105 active:scale-95
                     `}
-                    onTouchStart={() => handleAppPress(app.id)}
-                    onTouchEnd={handleAppRelease}
-                    onMouseDown={() => handleAppPress(app.id)}
-                    onMouseUp={handleAppRelease}
-                    onMouseLeave={handleAppRelease}
                 >
                     {/* App Icon Container */}
                     <div className="relative">
@@ -281,7 +273,6 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                             flex items-center justify-center
                             shadow-lg group-hover:shadow-xl
                             transition-all duration-200
-                            ${pressedApp === app.id ? 'brightness-90' : ''}
                         `}>
                             {app.icon.startsWith('/') ? (
                                 <Image
@@ -301,10 +292,6 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                         {/* Shine effect */}
                         <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
 
-                        {/* Press effect */}
-                        {pressedApp === app.id && (
-                            <div className="absolute inset-0 rounded-3xl bg-black/20"></div>
-                        )}
                     </div>
 
                     {/* App Name */}
@@ -318,7 +305,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                     <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
                         {app.description}
                     </div>
-                </a>
+                </div>
             ))}
         </div>
     );
@@ -450,6 +437,13 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                     </div>
                 </div>
             </div>
+
+            {/* App Popup */}
+            <AppPopup
+                isOpen={isPopupOpen}
+                onClose={() => setIsPopupOpen(false)}
+                apps={originalApps}
+            />
         </div>
     );
 }
