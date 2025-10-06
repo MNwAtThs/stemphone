@@ -245,6 +245,25 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
         setCurrentScreen(screenIndex);
     };
 
+    // Popup app ordering: Row 1 (requested) then Row 2 (requested), then rest
+    const popupApps: AppTile[] = [
+        // Row 1
+        { id: 'samsat', name: 'SAMSAT', icon: '/samsat.png', href: '/samsat', gradient: 'from-blue-500 to-indigo-600', description: 'SAMSAT' },
+        { id: 'portsa', name: 'Port SA', icon: '/portsa.png', href: '/portsa', gradient: 'from-teal-500 to-cyan-600', description: 'Port San Antonio' },
+        { id: 'dsec', name: 'DSEC', icon: '/dsec.png', href: '/dsec', gradient: 'from-slate-600 to-gray-700', description: 'Cybersecurity DSEC' },
+        { id: 'robot', name: 'Robot', icon: '/robot.png', href: '/robot', gradient: 'from-gray-600 to-slate-700', description: 'Robot control' },
+        // Row 2
+        { id: 'aviation', name: 'Aviation', icon: '/aviation.png', href: '/aviation', gradient: 'from-sky-500 to-indigo-600', description: 'Aviation' },
+        { id: 'space', name: 'Space', icon: '/space.png', href: '/space', gradient: 'from-purple-600 to-indigo-700', description: 'Space' },
+        { id: 'cyber', name: 'Cyber', icon: '/cyber.png', href: '/cyber', gradient: 'from-slate-600 to-gray-700', description: 'Cybersecurity' },
+        { id: 'vr', name: 'Virtual Reality', icon: '/vr.png', href: '/vr', gradient: 'from-fuchsia-500 to-purple-600', description: 'Virtual Reality' },
+        // Row 3 (requested)
+        { id: 'ai', name: 'AI', icon: '/ai.png', href: '/ai', gradient: 'from-emerald-500 to-teal-600', description: 'Artificial Intelligence' },
+        { id: 'av', name: 'AV', icon: '/av.png', href: '/av', gradient: 'from-amber-500 to-orange-600', description: 'Autonomous/Audio-Visual' },
+        { id: 'computer', name: 'Computer', icon: '/computer.png', href: '/computer', gradient: 'from-blue-600 to-indigo-700', description: 'Computer Science' },
+        { id: 'it', name: 'IT', icon: '/it.png', href: '/it', gradient: 'from-cyan-600 to-blue-700', description: 'Information Technology' }
+    ];
+
     const handleAppClick = (app: AppTile) => {
         if (app.id === 'stem-superstars') {
             setIsPopupOpen(true);
@@ -330,7 +349,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                 </div>
 
                 {/* Screens Container */}
-                <div className="flex-1 px-6 overflow-hidden pt-16">
+                <div className="flex-1 px-0 overflow-hidden pt-16">
                     <div
                         className="flex h-full transition-transform duration-300 ease-out"
                         style={{
@@ -341,7 +360,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                         {homeScreens.map((screen, index) => (
                             <div
                                 key={screen.id}
-                                className="w-full flex-shrink-0 flex items-center justify-center"
+                                className="w-full flex-shrink-0 flex items-center justify-center px-6 md:px-12"
                                 style={{ width: `${100 / homeScreens.length}%` }}
                             >
                                 <AppGridComponent apps={screen.apps} />
@@ -350,22 +369,10 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                     </div>
                 </div>
 
-                {/* Screen Indicator Dots */}
-                <div className="flex justify-center space-x-2 py-4">
-                    {homeScreens.map((_, index) => (
-                        <button
-                            key={index}
-                            onClick={() => goToScreen(index)}
-                            className={`w-2 h-2 rounded-full transition-all duration-200 ${index === currentScreen
-                                ? 'bg-white scale-125'
-                                : 'bg-white/40 hover:bg-white/60'
-                                }`}
-                        />
-                    ))}
-                </div>
+                {/* Screen Indicator Dots removed (kept only the set near the dock) */}
 
                 {/* Navigation Dots and Dock */}
-                <div className="px-12 pt-96 pb-8">
+                <div className="px-0 pt-96 pb-8">
                     {/* Screen Indicator Dots */}
                     <div className="flex justify-center space-x-2 py-4">
                         {homeScreens.map((_, index) => (
@@ -380,58 +387,58 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                         ))}
                     </div>
 
-                    <div className="bg-white/10 backdrop-blur-md rounded-3xl p-4 border border-white/20 shadow-2xl">
-                        <div className="flex justify-center space-x-16">
-                            <a href="/phone" className="flex flex-col items-center gap-4 p-4 rounded-2xl hover:bg-white/20 transition-all duration-200">
-                                <div className="w-56 h-56 rounded-3xl flex items-center justify-center">
+                    <div className="bg-white/10 backdrop-blur-md rounded-3xl p-3 border border-white/20 shadow-2xl w-fit mx-auto max-w-full overflow-hidden">
+                        <div className="flex justify-center space-x-5 w-fit">
+                            <a href="/phone" className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200">
+                                <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
                                     <Image
                                         src="/phone.png"
                                         alt="Phone"
-                                        width={224}
-                                        height={224}
-                                        className="w-56 h-56 object-contain rounded-3xl"
+                                        width={192}
+                                        height={192}
+                                        className="w-48 h-48 object-contain rounded-3xl"
                                     />
                                 </div>
-                                <span className="text-3xl text-white font-medium">Phone</span>
+                                <span className="text-2xl text-white font-medium">Phone</span>
                             </a>
 
-                            <a href="/facetime" className="flex flex-col items-center gap-4 p-4 rounded-2xl hover:bg-white/20 transition-all duration-200">
-                                <div className="w-56 h-56 rounded-3xl flex items-center justify-center">
+                            <a href="/facetime" className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200">
+                                <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
                                     <Image
                                         src="/facetime.png"
                                         alt="FaceTime"
-                                        width={224}
-                                        height={224}
-                                        className="w-56 h-56 object-contain rounded-3xl"
+                                        width={192}
+                                        height={192}
+                                        className="w-48 h-48 object-contain rounded-3xl"
                                     />
                                 </div>
-                                <span className="text-3xl text-white font-medium">FaceTime</span>
+                                <span className="text-2xl text-white font-medium">FaceTime</span>
                             </a>
 
-                            <a href="/messages" className="flex flex-col items-center gap-4 p-4 rounded-2xl hover:bg-white/20 transition-all duration-200">
-                                <div className="w-56 h-56 rounded-3xl flex items-center justify-center">
+                            <a href="/messages" className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200">
+                                <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
                                     <Image
                                         src="/messages.png"
                                         alt="Messages"
-                                        width={224}
-                                        height={224}
-                                        className="w-56 h-56 object-contain rounded-3xl"
+                                        width={192}
+                                        height={192}
+                                        className="w-48 h-48 object-contain rounded-3xl"
                                     />
                                 </div>
-                                <span className="text-3xl text-white font-medium">Messages</span>
+                                <span className="text-2xl text-white font-medium">Messages</span>
                             </a>
 
-                            <a href="/mail" className="flex flex-col items-center gap-4 p-4 rounded-2xl hover:bg-white/20 transition-all duration-200">
-                                <div className="w-56 h-56 rounded-3xl flex items-center justify-center">
+                            <a href="/mail" className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200">
+                                <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
                                     <Image
                                         src="/mail.png"
                                         alt="Mail"
-                                        width={224}
-                                        height={224}
-                                        className="w-56 h-56 object-contain rounded-3xl"
+                                        width={192}
+                                        height={192}
+                                        className="w-48 h-48 object-contain rounded-3xl"
                                     />
                                 </div>
-                                <span className="text-3xl text-white font-medium">Mail</span>
+                                <span className="text-2xl text-white font-medium">Mail</span>
                             </a>
                         </div>
                     </div>
@@ -442,7 +449,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
             <AppPopup
                 isOpen={isPopupOpen}
                 onClose={() => setIsPopupOpen(false)}
-                apps={originalApps}
+                apps={popupApps}
             />
         </div>
     );

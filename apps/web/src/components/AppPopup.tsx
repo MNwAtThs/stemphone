@@ -68,18 +68,27 @@ export function AppPopup({ isOpen, onClose, apps }: AppPopupProps) {
         >
             <div className="bg-white rounded-3xl p-8 max-w-6xl w-full max-h-[85vh] overflow-y-auto shadow-2xl">
                 {/* Header */}
-                <div className="flex justify-between items-center mb-8">
-                    <h2 className="text-3xl font-bold text-gray-800">STEM Superstars Apps</h2>
+                <div className="relative mb-8">
+                    <h2 className="text-5xl font-bold text-gray-900 text-center">STEM Superstars Apps</h2>
                     <button
                         onClick={onClose}
-                        className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
+                        className="absolute right-0 top-0 rounded-xl bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 transition-colors"
+                        aria-label="Close"
                     >
-                        <span className="text-gray-600 text-xl">×</span>
+                        <svg
+                            className="w-7 h-7"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path d="M6 6L18 18" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+                            <path d="M18 6L6 18" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+                        </svg>
                     </button>
                 </div>
 
                 {/* App Grid */}
-                <div className="grid grid-cols-4 gap-6">
+                <div className="grid grid-cols-4 gap-4 justify-items-center">
                     {apps.map((app) => (
                         <a
                             key={app.id}
@@ -100,7 +109,7 @@ export function AppPopup({ isOpen, onClose, apps }: AppPopupProps) {
                             <div className="relative">
                                 {/* Icon Background */}
                                 <div className={`
-                                    w-32 h-32 rounded-3xl
+                                    w-40 h-40 rounded-3xl
                                     flex items-center justify-center
                                     shadow-lg group-hover:shadow-xl
                                     transition-all duration-200
@@ -110,13 +119,13 @@ export function AppPopup({ isOpen, onClose, apps }: AppPopupProps) {
                                         <Image
                                             src={app.icon}
                                             alt={app.name}
-                                            width={128}
-                                            height={128}
-                                            className="w-32 h-32 object-contain rounded-3xl"
+                                            width={160}
+                                            height={160}
+                                            className="w-40 h-40 object-contain rounded-3xl"
                                         />
                                     ) : (
-                                        <div className={`w-32 h-32 rounded-3xl bg-gradient-to-br ${app.gradient} flex items-center justify-center`}>
-                                            <span className="text-5xl">{app.icon}</span>
+                                        <div className={`w-40 h-40 rounded-3xl bg-gradient-to-br ${app.gradient} flex items-center justify-center`}>
+                                            <span className="text-6xl">{app.icon}</span>
                                         </div>
                                     )}
                                 </div>
@@ -131,8 +140,8 @@ export function AppPopup({ isOpen, onClose, apps }: AppPopupProps) {
                             </div>
 
                             {/* App Name */}
-                            <div className="mt-4 text-center">
-                                <span className="text-gray-800 text-lg font-medium leading-tight block">
+                            <div className="mt-5 text-center">
+                                <span className="text-gray-800 text-xl font-medium leading-tight block">
                                     {app.name}
                                 </span>
                             </div>
