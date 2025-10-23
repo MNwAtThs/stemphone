@@ -240,6 +240,9 @@ interface MultiScreenHomeProps {
 export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
     const [currentScreen, setCurrentScreen] = useState(0);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isDirectorsOpen, setIsDirectorsOpen] = useState(false);
+    const [isPortSaOpen, setIsPortSaOpen] = useState(false);
+    const [isDsecOpen, setIsDsecOpen] = useState(false);
 
     const goToScreen = (screenIndex: number) => {
         setCurrentScreen(screenIndex);
@@ -264,12 +267,45 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
         { id: 'it', name: 'IT', icon: '/it.png', href: '/it', gradient: 'from-cyan-600 to-blue-700', description: 'Information Technology' }
     ];
 
+    // Board of Directors (uses same popup UI as apps, 4x2 grid)
+    const directorsApps: AppTile[] = [
+        // Row 1 (left to right)
+        { id: 'david-monroe', name: 'David Monroe', icon: '/davidmonroe.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+        { id: 'dominic-papagni', name: 'Dominic Papagni', icon: '/dominicpapagni.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+        { id: 'allison-levine', name: 'Allison Levine', icon: '/allisonlevine.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+        { id: 'philip-nelson', name: 'Philip Nelson', icon: '/philipnelson.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+        // Row 2 (left to right)
+        { id: 'ricardo-maldonado', name: 'Ricardo Maldonado', icon: '/ricardomaldonado.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+        { id: 'raul-reyna', name: 'Raul Reyna', icon: '/raulreyna.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+        { id: 'scott-gray', name: 'Scott Gray', icon: '/scottgray.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+        { id: 'john-strieby', name: 'John Strieby', icon: '/johnstrieby.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' }
+    ];
+
+    // Port SA Leadership grid (3x4), uses available Port SA images
+    const portSaApps: AppTile[] = [
+        // Row 1
+        { id: 'abigail-ottmers', name: 'Abigail Ottmers', icon: '/abigailottmers.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+        { id: 'adrienne-cox', name: 'Adrienne Cox', icon: '/adriennecox.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+        { id: 'caroline-diaz', name: 'Caroline Diaz', icon: '/carolinediaz.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+        { id: 'curtis-casey', name: 'Curtis Casey', icon: '/curtiscasey.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+        // Row 2
+        { id: 'jim-perschbach', name: 'Jim Perschbach', icon: '/jimperschbach.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+        { id: 'juan-antonio', name: 'Juan Antonio', icon: '/juanantonio.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+        { id: 'marcel-johnson', name: 'Marcel Johnson', icon: '/marceljohnson.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+        { id: 'paco-felici', name: 'Paco Felici', icon: '/pacofelici.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+        // Row 3
+        { id: 'pat-cruzen', name: 'Pat Cruzen', icon: '/patcruzen.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+        { id: 'ramon-flores', name: 'Ramon Flores', icon: '/ramonflores.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+        { id: 'rick-crider', name: 'Rick Crider', icon: '/rickcrider.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+        { id: 'will-garrett', name: 'Will Garrett', icon: '/willgarrett.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' }
+    ];
+
     const handleAppClick = (app: AppTile) => {
         if (app.id === 'stem-superstars') {
             setIsPopupOpen(true);
-        } else {
-            window.location.href = app.href;
+            return;
         }
+        window.location.href = app.href;
     };
 
     const AppGridComponent = ({ apps }: { apps: AppTile[] }) => (
@@ -450,6 +486,51 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                 isOpen={isPopupOpen}
                 onClose={() => setIsPopupOpen(false)}
                 apps={popupApps}
+                onItemClick={(app) => {
+                    if (app.id === 'samsat') {
+                        console.log('SAMSAT clicked');
+                        setIsPopupOpen(false);
+                        setTimeout(() => setIsDirectorsOpen(true), 0);
+                        return;
+                    }
+                    if (app.id === 'portsa') {
+                        console.log('Port SA clicked');
+                        setIsPopupOpen(false);
+                        setTimeout(() => setIsPortSaOpen(true), 0);
+                        return;
+                    }
+                    if (app.id === 'dsec') {
+                        console.log('DSEC clicked');
+                        setIsPopupOpen(false);
+                        setTimeout(() => setIsDsecOpen(true), 0);
+                        return;
+                    }
+                    window.location.href = app.href;
+                }}
+                title="STEM Superstars Apps" />
+
+            {/* Secondary popup: Board of Directors (reuses AppPopup styling) */}
+            <AppPopup
+                isOpen={isDirectorsOpen}
+                onClose={() => { setIsDirectorsOpen(false); setIsPopupOpen(true); }}
+                apps={directorsApps}
+                title="Board of Directors"
+            />
+
+            {/* Port SA popup (same UI) */}
+            <AppPopup
+                isOpen={isPortSaOpen}
+                onClose={() => { setIsPortSaOpen(false); setIsPopupOpen(true); }}
+                apps={portSaApps}
+                title="Port SA Leadership"
+            />
+
+            {/* DSEC popup (article content) */}
+            <AppPopup
+                isOpen={isDsecOpen}
+                onClose={() => { setIsDsecOpen(false); setIsPopupOpen(true); }}
+                apps={[]}
+                title="DSEC"
             />
         </div>
     );
