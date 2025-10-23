@@ -37,7 +37,7 @@ export default function CameraPage() {
             const saved = localStorage.getItem('stemphone-photos');
             if (saved) {
                 const parsedPhotos = JSON.parse(saved);
-                setPhotos(parsedPhotos.map((p: any) => ({
+                setPhotos(parsedPhotos.map((p: { id: string; dataUrl: string; timestamp: string }) => ({
                     ...p,
                     timestamp: new Date(p.timestamp)
                 })));

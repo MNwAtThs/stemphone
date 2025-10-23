@@ -255,7 +255,7 @@ export default function SearchPage() {
                     ) : searchTerm ? (
                         <div className="text-center py-8">
                             <div className="text-4xl mb-4">🤔</div>
-                            <p className="text-gray-300">No results found for "{searchTerm}"</p>
+                            <p className="text-gray-300">No results found for &quot;{searchTerm}&quot;</p>
                             <p className="text-sm text-gray-400 mt-2">Try different keywords or browse categories</p>
                         </div>
                     ) : null}

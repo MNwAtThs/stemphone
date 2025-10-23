@@ -25,7 +25,7 @@ export default function GalleryPage() {
             const saved = localStorage.getItem('stemphone-photos');
             if (saved) {
                 const parsedPhotos = JSON.parse(saved);
-                const photosWithDates = parsedPhotos.map((p: any) => ({
+                const photosWithDates = parsedPhotos.map((p: { id: string; dataUrl: string; timestamp: string }) => ({
                     ...p,
                     timestamp: new Date(p.timestamp)
                 }));

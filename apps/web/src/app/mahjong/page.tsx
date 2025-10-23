@@ -56,7 +56,7 @@ export default function MahjongPage() {
         ];
 
         // Create a simple 8x6 grid layout
-        const positions = [];
+        const positions: { x: number; y: number; z: number }[] = [];
         for (let y = 0; y < 6; y++) {
             for (let x = 0; x < 8; x++) {
                 positions.push({ x, y, z: 0 });
