@@ -1,0 +1,35 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="512" height="512" rx="120" fill="url(#grad)"/>
+  
+  <!-- Phone outline -->
+  <rect x="156" y="96" width="200" height="320" rx="40" fill="none" stroke="white" stroke-width="8"/>
+  
+  <!-- Screen -->
+  <rect x="176" y="136" width="160" height="240" rx="20" fill="rgba(255,255,255,0.9)"/>
+  
+  <!-- Home button -->
+  <circle cx="256" cy="396" r="12" fill="white"/>
+  
+  <!-- Speaker -->
+  <rect x="216" y="116" width="80" height="8" rx="4" fill="white"/>
+  
+  <!-- App icons on screen -->
+  <circle cx="206" cy="176" r="16" fill="#ff6b6b"/>
+  <circle cx="256" cy="176" r="16" fill="#4ecdc4"/>
+  <circle cx="306" cy="176" r="16" fill="#45b7d1"/>
+  
+  <circle cx="206" cy="226" r="16" fill="#96ceb4"/>
+  <circle cx="256" cy="226" r="16" fill="#ffeaa7"/>
+  <circle cx="306" cy="226" r="16" fill="#dda0dd"/>
+  
+  <!-- Text -->
+  <text x="256" y="480" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">STEMPHONE</text>
+</svg>
