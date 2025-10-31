@@ -231,3 +231,6 @@ Desktop.ini
 
 # Linux
 *~
+
+infra/mosquitto/config/passwd
+package-lock.json
