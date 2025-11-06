@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, cloneElement } from 'react';
 import { StatusBar } from '@/components/StatusBar';
 import { AppPopup } from '@/components/AppPopup';
 import Image from 'next/image';
@@ -12,6 +12,10 @@ interface AppTile {
     href: string;
     gradient: string;
     description: string;
+}
+
+interface PopupDictionary {
+	[key: string]: AppTile[];
 }
 
 interface HomeScreen {
@@ -144,6 +148,7 @@ const originalApps: AppTile[] = [
     }
 ];
 
+/*
 // Modern STEM Apps (Screen 2)
 const modernApps: AppTile[] = [
     {
@@ -218,19 +223,19 @@ const modernApps: AppTile[] = [
         gradient: 'from-gray-500 to-gray-600',
         description: 'App settings'
     }
-];
+];*/
 
 const homeScreens: HomeScreen[] = [
     {
         id: 'original',
         title: 'Classic Apps',
         apps: originalApps
-    },
+    }/*,
     {
         id: 'modern',
         title: 'STEM Lab',
         apps: modernApps
-    }
+    }*/
 ];
 
 interface MultiScreenHomeProps {
@@ -239,17 +244,16 @@ interface MultiScreenHomeProps {
 
 export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
     const [currentScreen, setCurrentScreen] = useState(0);
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [isDirectorsOpen, setIsDirectorsOpen] = useState(false);
-    const [isPortSaOpen, setIsPortSaOpen] = useState(false);
-    const [isDsecOpen, setIsDsecOpen] = useState(false);
+    const [activePopupID, setActivePopupID] = useState(null);
+    const [activeApps, setActiveApps] = useState([]);
 
     const goToScreen = (screenIndex: number) => {
         setCurrentScreen(screenIndex);
     };
 
+    const popupApps: PopupDictionary = {
     // Popup app ordering: Row 1 (requested) then Row 2 (requested), then rest
-    const popupApps: AppTile[] = [
+	'stem-superstars' : [
         // Row 1
         { id: 'samsat', name: 'SAMSAT', icon: '/samsat.png', href: '/samsat', gradient: 'from-blue-500 to-indigo-600', description: 'SAMSAT' },
         { id: 'portsa', name: 'Port SA', icon: '/portsa.png', href: '/portsa', gradient: 'from-teal-500 to-cyan-600', description: 'Port San Antonio' },
@@ -265,10 +269,10 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
         { id: 'av', name: 'AV', icon: '/av.png', href: '/av', gradient: 'from-amber-500 to-orange-600', description: 'Autonomous/Audio-Visual' },
         { id: 'computer', name: 'Computer', icon: '/computer.png', href: '/computer', gradient: 'from-blue-600 to-indigo-700', description: 'Computer Science' },
         { id: 'it', name: 'IT', icon: '/it.png', href: '/it', gradient: 'from-cyan-600 to-blue-700', description: 'Information Technology' }
-    ];
+    ],
 
     // Board of Directors (uses same popup UI as apps, 4x2 grid)
-    const directorsApps: AppTile[] = [
+    'samsat' : [
         // Row 1 (left to right)
         { id: 'david-monroe', name: 'David Monroe', icon: '/davidmonroe.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
         { id: 'dominic-papagni', name: 'Dominic Papagni', icon: '/dominicpapagni.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
@@ -279,10 +283,10 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
         { id: 'raul-reyna', name: 'Raul Reyna', icon: '/raulreyna.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
         { id: 'scott-gray', name: 'Scott Gray', icon: '/scottgray.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
         { id: 'john-strieby', name: 'John Strieby', icon: '/johnstrieby.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' }
-    ];
+    ],
 
     // Port SA Leadership grid (3x4), uses available Port SA images
-    const portSaApps: AppTile[] = [
+    'portsa' : [
         // Row 1
         { id: 'abigail-ottmers', name: 'Abigail Ottmers', icon: '/abigailottmers.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
         { id: 'adrienne-cox', name: 'Adrienne Cox', icon: '/adriennecox.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
@@ -298,14 +302,16 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
         { id: 'ramon-flores', name: 'Ramon Flores', icon: '/ramonflores.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
         { id: 'rick-crider', name: 'Rick Crider', icon: '/rickcrider.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
         { id: 'will-garrett', name: 'Will Garrett', icon: '/willgarrett.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' }
-    ];
+    ]
+    };
 
     const handleAppClick = (app: AppTile) => {
-        if (app.id === 'stem-superstars') {
-            setIsPopupOpen(true);
-            return;
-        }
-        window.location.href = app.href;
+	setActivePopupID(app.id);
+	if(popupApps[app.id] != null)
+		setActiveApps(popupApps[app.id]);
+	else
+		console.log("Non apptiles not implemented.");
+	return;
     };
 
     const AppGridComponent = ({ apps }: { apps: AppTile[] }) => (
@@ -477,58 +483,17 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                     </div>
                 </div>
             </div>
-
+	
             {/* App Popup */}
-            <AppPopup
-                isOpen={isPopupOpen}
-                onClose={() => setIsPopupOpen(false)}
-                apps={popupApps}
-                onItemClick={(app) => {
-                    if (app.id === 'samsat') {
-                        console.log('SAMSAT clicked');
-                        setIsPopupOpen(false);
-                        setTimeout(() => setIsDirectorsOpen(true), 0);
-                        return;
-                    }
-                    if (app.id === 'portsa') {
-                        console.log('Port SA clicked');
-                        setIsPopupOpen(false);
-                        setTimeout(() => setIsPortSaOpen(true), 0);
-                        return;
-                    }
-                    if (app.id === 'dsec') {
-                        console.log('DSEC clicked');
-                        setIsPopupOpen(false);
-                        setTimeout(() => setIsDsecOpen(true), 0);
-                        return;
-                    }
-                    window.location.href = app.href;
-                }}
-                title="STEM Superstars Apps" />
-
-            {/* Secondary popup: Board of Directors (reuses AppPopup styling) */}
-            <AppPopup
-                isOpen={isDirectorsOpen}
-                onClose={() => { setIsDirectorsOpen(false); setIsPopupOpen(true); }}
-                apps={directorsApps}
-                title="Board of Directors"
-            />
-
-            {/* Port SA popup (same UI) */}
-            <AppPopup
-                isOpen={isPortSaOpen}
-                onClose={() => { setIsPortSaOpen(false); setIsPopupOpen(true); }}
-                apps={portSaApps}
-                title="Port SA Leadership"
-            />
-
-            {/* DSEC popup (article content) */}
-            <AppPopup
-                isOpen={isDsecOpen}
-                onClose={() => { setIsDsecOpen(false); setIsPopupOpen(true); }}
-                apps={[]}
-                title="DSEC"
-            />
+	    
+		<AppPopup
+			isOpen={activePopupID != null}
+			onClose={() => {setActivePopupID(null);}}
+			apps={activeApps}
+			title="Apps"
+                	onItemClick={(app) => {handleAppClick(app)}}
+		/>
+		
         </div>
     );
 }
