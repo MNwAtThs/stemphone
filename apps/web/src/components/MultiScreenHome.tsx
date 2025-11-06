@@ -274,7 +274,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
     // Board of Directors (uses same popup UI as apps, 4x2 grid)
     'samsat' : [
         // Row 1 (left to right)
-        { id: 'david-monroe', name: 'David Monroe', icon: '/davidmonroe.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+        //{ id: 'david-monroe', name: 'David Monroe', icon: '/davidmonroe.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
         { id: 'dominic-papagni', name: 'Dominic Papagni', icon: '/dominicpapagni.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
         { id: 'allison-levine', name: 'Allison Levine', icon: '/allisonlevine.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
         { id: 'philip-nelson', name: 'Philip Nelson', icon: '/philipnelson.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
@@ -307,10 +307,12 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
 
     const handleAppClick = (app: AppTile) => {
 	setActivePopupID(app.id);
-	if(popupApps[app.id] != null)
+	if(popupApps[app.id] != null){
 		setActiveApps(popupApps[app.id]);
-	else
+	}else{
+		setActiveApps([]);
 		console.log("Non apptiles not implemented.");
+	}
 	return;
     };
 
