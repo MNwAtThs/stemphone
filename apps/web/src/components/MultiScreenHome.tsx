@@ -282,8 +282,8 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
             // Row 2 (left to right)
             { id: 'ricardo-maldonado', name: 'Ricardo Maldonado', icon: '/images/people/samsatbod/ricardomaldonado.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
             { id: 'raul-reyna', name: 'Raul Reyna', icon: '/images/people/samsatbod/raulreyna.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
-            { id: 'scott-gray', name: 'Scott Gray', icon: '/images/people/samsatbod/scottgray.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
-            { id: 'john-strieby', name: 'John Strieby', icon: '/images/people/samsatbod/johnstrieby.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' }
+            { id: 'scott-gray', name: 'Scott Gray', icon: '/images/people/unknown.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+            { id: 'john-strieby', name: 'John Strieby', icon: '/images/people/unknown.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' }
         ],
 
         // Port SA Leadership grid (3x4), uses available Port SA images
@@ -305,6 +305,22 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
             { id: 'will-garrett', name: 'Will Garrett', icon: '/images/people/portsa/willgarrett.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' }
         ],
 
+	//IEEE
+        'ieee': [
+            // Row 1
+            { id: 'walt-downing', name: 'Walt Downing', icon: '/images/people/ieee/waltdowning.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'IEEE Member' },
+            { id: 'nils-smith', name: 'Nils Smith', icon: '/images/people/ieee/nilssmith.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'IEEE Member' },
+            { id: 't-scott-atkinson', name: 'T. Scott Atkinson', icon: '/images/people/ieee/tscottatkinson.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'IEEE Member' },
+            { id: 'garrett-polhamus', name: 'Garrett Polhamus', icon: '/images/people/unknown.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'IEEE Member' },
+            { id: 'ernest-franke', name: 'Ernest Franke', icon: '/images/people/ieee/ernestfranke.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'IEEE Member' },
+            { id: 'chris-camargo', name: 'Chris Camargo', icon: '/images/people/unknown.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'IEEE Member' },
+            { id: 'joe-redfield', name: 'Joe Redfield', icon: '/images/people/ieee/joeredfield.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'IEEE Member' },
+            { id: 'jennifer-henriquez', name: 'Jennifer Henriquez', icon: '/images/people/ieee/jenniferhenriquez.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'IEEE Member' },
+            { id: 'sriram-nagaraj', name: 'Sriram Nagaraj', icon: '/images/people/unknown.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'IEEE Member' },
+            { id: 'warren-conner', name: 'Warren Conner', icon: '/images/people/unknown.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'IEEE Member' },
+            { id: 'patrick-stockton', name: 'Patrick Stockton', icon: '/images/people/unknown.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'IEEE Member' },
+        ],
+
         // DSEC - Shows article content instead of app grid
         'dsec': []
     };
@@ -313,6 +329,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
     const popupTitles: { [key: string]: string } = {
         'samsat': 'Board of Directors',
         'portsa': 'Port SA Leadership',
+        'ieee': 'IEEE',
         'dsec': 'DSEC'
     };
 

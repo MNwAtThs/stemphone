@@ -112,6 +112,19 @@ export function AppPopup({ isOpen, onClose, apps, onItemClick, title = 'STEM Sup
                     </div>
                 )}
 
+                {/* IEEE Logo for IEEE - Above the title */}
+                {title === 'IEEE' && (
+                    <div className="flex justify-center mb-6">
+                        <Image
+                            src="/images/logos/ieee_logo.png"
+                            alt="IEEE Logo"
+                            width={200}
+                            height={100}
+                            className="h-16 w-auto"
+                        />
+                    </div>
+                )}
+
                 {/* DSEC Logo for DSEC Article - Above the title */}
                 {title === 'DSEC' && (
                     <div className="flex justify-center mb-6">
