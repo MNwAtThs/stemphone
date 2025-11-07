@@ -397,6 +397,18 @@ export function AppPopup({ isOpen, onClose, apps, onItemClick, title = 'STEM Sup
                             />
                         </div>
                     </div>
+                ) : title === 'Learn Morse Code' ? (
+                    <div className="max-w-4xl mx-auto">
+                        <div className="mb-6">
+                            <Image
+                                src="/images/graphics/international_morse_code.png"
+                                alt="International Morse Code"
+                                width={1200}
+                                height={800}
+                                className="w-full h-auto rounded-2xl shadow-lg"
+                            />
+                        </div>
+                    </div>
                 ) : title === 'Music Player' ? (
                     <div className="max-w-4xl mx-auto">
                         {/* Header */}
@@ -671,6 +683,43 @@ export function AppPopup({ isOpen, onClose, apps, onItemClick, title = 'STEM Sup
                             </div>
                         </div>
                     </div>
+		) : title === 'Donate to Samsat' ? (
+                        <div className="grid grid-cols-3 gap-3">
+			<div className="relative group">
+					<Image
+						src="/images/graphics/launch_dreams_beyond_the_stars.png"
+						alt="Donate QR Code"
+						width={400}
+						height={800}
+						className="w-half h-half object-cover group-hover:scale-105"
+					/>
+			</div>
+			<div className="grid grid-cols-1 gap-1">
+			<div className="relative group fg-stone-800 center">
+			<div className="fg-stone-800 center">
+				<p>(USE YOUR PHONE CAMERA TO SCAN)</p>
+			</div>
+			</div>
+			<div className="relative group">
+					<Image
+						src="/images/graphics/donate_scanme.png"
+						alt="Donate QR Code"
+						width={400}
+						height={700}
+						className="w-half h-half object-cover group-hover:scale-105"
+					/>
+			</div>
+			</div>
+			<div className="relative group">
+					<Image
+						src="/images/graphics/transform_dreams_into_reality.png"
+						alt="Donate QR Code"
+						width={400}
+						height={700}
+						className="w-half h-half object-cover group-hover:scale-105"
+					/>
+			</div>
+			</div>
                 ) : title === 'Video' ? (
                     <div className="max-w-5xl mx-auto">
                         {/* Video Grid - 2 columns, 3 rows */}
@@ -680,7 +729,7 @@ export function AppPopup({ isOpen, onClose, apps, onItemClick, title = 'STEM Sup
                                 <div className="aspect-video overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-900">
                                     <iframe
                                         className="w-full h-full"
-                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        src="https://www.youtube.com/embed/122W4TZ1r3c"
                                         title="Video 1"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
@@ -691,7 +740,7 @@ export function AppPopup({ isOpen, onClose, apps, onItemClick, title = 'STEM Sup
                                 <div className="aspect-video overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-900">
                                     <iframe
                                         className="w-full h-full"
-                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        src="https://www.youtube.com/embed/P6OyxIRshAw"
                                         title="Video 2"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
@@ -703,7 +752,7 @@ export function AppPopup({ isOpen, onClose, apps, onItemClick, title = 'STEM Sup
                                 <div className="aspect-video overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-900">
                                     <iframe
                                         className="w-full h-full"
-                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        src="https://www.youtube.com/embed/Fxs5ot5qIfc"
                                         title="Video 3"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
@@ -714,7 +763,7 @@ export function AppPopup({ isOpen, onClose, apps, onItemClick, title = 'STEM Sup
                                 <div className="aspect-video overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-900">
                                     <iframe
                                         className="w-full h-full"
-                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        src="https://www.youtube.com/embed/lJaXoR4C-Gg"
                                         title="Video 4"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
@@ -726,7 +775,7 @@ export function AppPopup({ isOpen, onClose, apps, onItemClick, title = 'STEM Sup
                                 <div className="aspect-video overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-900">
                                     <iframe
                                         className="w-full h-full"
-                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        src="https://www.youtube.com/embed/mW364WKGrF4"
                                         title="Video 5"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
@@ -737,7 +786,7 @@ export function AppPopup({ isOpen, onClose, apps, onItemClick, title = 'STEM Sup
                                 <div className="aspect-video overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-900">
                                     <iframe
                                         className="w-full h-full"
-                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        src="https://www.youtube.com/embed/dCeW0NvcTjg"
                                         title="Video 6"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen

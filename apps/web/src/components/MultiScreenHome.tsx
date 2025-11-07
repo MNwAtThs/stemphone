@@ -83,8 +83,8 @@ const originalApps: AppTile[] = [
         description: 'Educational quizzes'
     },
     {
-        id: 'robot',
-        name: 'Robot',
+        id: 'sammy',
+        name: 'Sammy',
         icon: '/images/apps/robot.png',
         href: '/robot',
         gradient: 'from-gray-600 to-slate-700',
@@ -346,7 +346,16 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
         'photos': [],
 
         // Videos - Shows video gallery
-        'videos': []
+        'videos': [],
+
+	// Sammy - Shows Sammy image
+	'sammy': [],
+
+	// Donate - Shows donate gallery
+	'donate': [],
+
+	// Sammy - Shows Sammy image
+	'morsecode': [],
     };
 
     // Map popup IDs to their titles
@@ -357,12 +366,15 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
         'dsec': 'DSEC',
         'music': 'Music Player',
         'robot': 'ROBOTS',
+	'sammy': 'Sammy',
         'aviation': 'AVIATION',
         'space': 'SPACE',
         'ai': 'ARTIFICIAL INTELLIGENCE',
         'nasa': 'NASA Photo Gallery',
         'photos': 'Photos',
-        'videos': 'Video'
+        'videos': 'Video',
+	'donate': 'Donate to Samsat',
+	'morsecode': 'Learn Morse Code',
     };
 
     const handleAppClick = (app: AppTile) => {
