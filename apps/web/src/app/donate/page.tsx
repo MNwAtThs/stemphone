@@ -17,7 +17,7 @@ export default function DonatePage() {
 			{/*
 			<table>
 				<tbody><tr>
-					<td><Image src="/transform_dreams_into_reality.png" width={340} height={603}/></td>
+					<td><Image src="/images/graphics/transform_dreams_into_reality.png" width={340} height={603}/></td>
 				</tr></tbody>
 			</table>
 			*/}

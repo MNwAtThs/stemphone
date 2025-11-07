@@ -67,7 +67,7 @@ export function StatusBar() {
             {/* Right side - Status Bar Image */}
             <div className="flex items-center mt-2 ml-32">
                 <Image
-                    src="/statusbar.png"
+                    src="/images/graphics/statusbar.png"
                     alt="Status Bar"
                     width={200}
                     height={50}

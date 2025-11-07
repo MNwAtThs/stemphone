@@ -12,7 +12,7 @@
 
 html,
 body {
-  background-image: url('/Background.png');
+  background-image: url('/images/background/Background.png');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -27,11 +27,31 @@ body {
   brightness: 1;
   contrast: 1;
   saturate: 1;
+  /* Hide scrollbars */
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbars for webkit browsers (Chrome, Safari, Edge) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbars for all elements */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
 /* Force background to show */
 #__next {
-  background-image: url('/Background.png');
+  background-image: url('/images/background/Background.png');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;

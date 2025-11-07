@@ -15,7 +15,7 @@ interface AppTile {
 }
 
 interface PopupDictionary {
-	[key: string]: AppTile[];
+    [key: string]: AppTile[];
 }
 
 interface HomeScreen {
@@ -29,7 +29,7 @@ const originalApps: AppTile[] = [
     {
         id: 'stem-superstars',
         name: 'STEM Superstars',
-        icon: '/stem-superstars.png',
+        icon: '/images/apps/stem-superstars.png',
         href: '/stem-superstars',
         gradient: 'from-blue-500 to-purple-600',
         description: 'STEM education platform'
@@ -37,7 +37,7 @@ const originalApps: AppTile[] = [
     {
         id: 'nasa',
         name: 'NASA',
-        icon: '/nasa.png',
+        icon: '/images/apps/nasa.png',
         href: '/nasa',
         gradient: 'from-gray-800 to-blue-900',
         description: 'NASA space exploration'
@@ -45,7 +45,7 @@ const originalApps: AppTile[] = [
     {
         id: 'ieee',
         name: 'IEEE',
-        icon: '/ieee.png',
+        icon: '/images/apps/ieee.png',
         href: '/ieee',
         gradient: 'from-blue-600 to-indigo-700',
         description: 'IEEE engineering society'
@@ -53,7 +53,7 @@ const originalApps: AppTile[] = [
     {
         id: 'music',
         name: 'Music',
-        icon: '/music.png',
+        icon: '/images/apps/music.png',
         href: '/music',
         gradient: 'from-pink-500 to-red-500',
         description: 'Music and audio player'
@@ -61,7 +61,7 @@ const originalApps: AppTile[] = [
     {
         id: 'photos',
         name: 'Photos',
-        icon: '/photos.png',
+        icon: '/images/apps/photos.png',
         href: '/photos',
         gradient: 'from-green-500 to-emerald-500',
         description: 'Photo gallery'
@@ -69,7 +69,7 @@ const originalApps: AppTile[] = [
     {
         id: 'videos',
         name: 'Videos',
-        icon: '/videos.png',
+        icon: '/images/apps/videos.png',
         href: '/videos',
         gradient: 'from-red-500 to-pink-500',
         description: 'Video player'
@@ -77,7 +77,7 @@ const originalApps: AppTile[] = [
     {
         id: 'quizzes',
         name: 'Quizzes',
-        icon: '/quizzes.png',
+        icon: '/images/apps/quizzes.png',
         href: '/quizzes',
         gradient: 'from-purple-500 to-indigo-500',
         description: 'Educational quizzes'
@@ -85,7 +85,7 @@ const originalApps: AppTile[] = [
     {
         id: 'robot',
         name: 'Robot',
-        icon: '/robot.png',
+        icon: '/images/apps/robot.png',
         href: '/robot',
         gradient: 'from-gray-600 to-slate-700',
         description: 'Robot control'
@@ -93,7 +93,7 @@ const originalApps: AppTile[] = [
     {
         id: 'morsecode',
         name: 'Morse Code',
-        icon: '/morsecode.png',
+        icon: '/images/apps/morsecode.png',
         href: '/morsecode',
         gradient: 'from-blue-600 to-cyan-600',
         description: 'Morse code translator'
@@ -101,7 +101,7 @@ const originalApps: AppTile[] = [
     {
         id: 'calculator',
         name: 'Calculator',
-        icon: '/calculator.png',
+        icon: '/images/apps/calculator.png',
         href: '/calculator',
         gradient: 'from-slate-600 to-gray-700',
         description: 'Scientific calculator'
@@ -109,7 +109,7 @@ const originalApps: AppTile[] = [
     {
         id: 'games',
         name: 'Games',
-        icon: '/games.png',
+        icon: '/images/apps/games.png',
         href: '/games',
         gradient: 'from-purple-500 to-indigo-500',
         description: 'Educational games'
@@ -117,7 +117,7 @@ const originalApps: AppTile[] = [
     {
         id: 'dataflow',
         name: 'Data Flow',
-        icon: '/dataflow.png',
+        icon: '/images/apps/dataflow.png',
         href: '/dataflow',
         gradient: 'from-teal-500 to-cyan-500',
         description: 'Data visualization'
@@ -125,7 +125,7 @@ const originalApps: AppTile[] = [
     {
         id: 'donate',
         name: 'Donate',
-        icon: '/donate.png',
+        icon: '/images/apps/donate.png',
         href: '/donate',
         gradient: 'from-green-500 to-emerald-500',
         description: 'Support the project'
@@ -133,7 +133,7 @@ const originalApps: AppTile[] = [
     {
         id: 'flashlight',
         name: 'Flashlight',
-        icon: '/flashlight.png',
+        icon: '/images/apps/flashlight.png',
         href: '/flashlight',
         gradient: 'from-yellow-400 to-yellow-600',
         description: 'Screen flashlight'
@@ -141,7 +141,7 @@ const originalApps: AppTile[] = [
     {
         id: 'utsa-interns',
         name: 'UTSA Interns',
-        icon: '/utsa.png',
+        icon: '/images/apps/utsa.png',
         href: '/utsa-interns',
         gradient: 'from-orange-600 to-blue-800',
         description: 'UTSA internship program'
@@ -244,76 +244,106 @@ interface MultiScreenHomeProps {
 
 export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
     const [currentScreen, setCurrentScreen] = useState(0);
-    const [activePopupID, setActivePopupID] = useState(null);
-    const [activeApps, setActiveApps] = useState([]);
+    const [activePopupID, setActivePopupID] = useState<string | null>(null);
+    const [activeApps, setActiveApps] = useState<AppTile[]>([]);
+    const [popupHistory, setPopupHistory] = useState<string[]>([]);
 
     const goToScreen = (screenIndex: number) => {
         setCurrentScreen(screenIndex);
     };
 
     const popupApps: PopupDictionary = {
-    // Popup app ordering: Row 1 (requested) then Row 2 (requested), then rest
-	'stem-superstars' : [
-        // Row 1
-        { id: 'samsat', name: 'SAMSAT', icon: '/samsat.png', href: '/samsat', gradient: 'from-blue-500 to-indigo-600', description: 'SAMSAT' },
-        { id: 'portsa', name: 'Port SA', icon: '/portsa.png', href: '/portsa', gradient: 'from-teal-500 to-cyan-600', description: 'Port San Antonio' },
-        { id: 'dsec', name: 'DSEC', icon: '/dsec.png', href: '/dsec', gradient: 'from-slate-600 to-gray-700', description: 'Cybersecurity DSEC' },
-        { id: 'robot', name: 'Robot', icon: '/robot.png', href: '/robot', gradient: 'from-gray-600 to-slate-700', description: 'Robot control' },
-        // Row 2
-        { id: 'aviation', name: 'Aviation', icon: '/aviation.png', href: '/aviation', gradient: 'from-sky-500 to-indigo-600', description: 'Aviation' },
-        { id: 'space', name: 'Space', icon: '/space.png', href: '/space', gradient: 'from-purple-600 to-indigo-700', description: 'Space' },
-        { id: 'cyber', name: 'Cyber', icon: '/cyber.png', href: '/cyber', gradient: 'from-slate-600 to-gray-700', description: 'Cybersecurity' },
-        { id: 'vr', name: 'Virtual Reality', icon: '/vr.png', href: '/vr', gradient: 'from-fuchsia-500 to-purple-600', description: 'Virtual Reality' },
-        // Row 3 (requested)
-        { id: 'ai', name: 'AI', icon: '/ai.png', href: '/ai', gradient: 'from-emerald-500 to-teal-600', description: 'Artificial Intelligence' },
-        { id: 'av', name: 'AV', icon: '/av.png', href: '/av', gradient: 'from-amber-500 to-orange-600', description: 'Autonomous/Audio-Visual' },
-        { id: 'computer', name: 'Computer', icon: '/computer.png', href: '/computer', gradient: 'from-blue-600 to-indigo-700', description: 'Computer Science' },
-        { id: 'it', name: 'IT', icon: '/it.png', href: '/it', gradient: 'from-cyan-600 to-blue-700', description: 'Information Technology' }
-    ],
+        // Popup app ordering: Row 1 (requested) then Row 2 (requested), then rest
+        'stem-superstars': [
+            // Row 1
+            { id: 'samsat', name: 'SAMSAT', icon: '/images/apps/samsat.png', href: '/samsat', gradient: 'from-blue-500 to-indigo-600', description: 'SAMSAT' },
+            { id: 'portsa', name: 'Port SA', icon: '/images/apps/portsa.png', href: '/portsa', gradient: 'from-teal-500 to-cyan-600', description: 'Port San Antonio' },
+            { id: 'dsec', name: 'DSEC', icon: '/images/apps/dsec.png', href: '/dsec', gradient: 'from-slate-600 to-gray-700', description: 'Cybersecurity DSEC' },
+            { id: 'robot', name: 'Robot', icon: '/images/apps/robot.png', href: '/robot', gradient: 'from-gray-600 to-slate-700', description: 'Robot control' },
+            // Row 2
+            { id: 'aviation', name: 'Aviation', icon: '/images/apps/aviation.png', href: '/aviation', gradient: 'from-sky-500 to-indigo-600', description: 'Aviation' },
+            { id: 'space', name: 'Space', icon: '/images/apps/space.png', href: '/space', gradient: 'from-purple-600 to-indigo-700', description: 'Space' },
+            { id: 'cyber', name: 'Cyber', icon: '/images/apps/cyber.png', href: '/cyber', gradient: 'from-slate-600 to-gray-700', description: 'Cybersecurity' },
+            { id: 'vr', name: 'Virtual Reality', icon: '/images/apps/vr.png', href: '/vr', gradient: 'from-fuchsia-500 to-purple-600', description: 'Virtual Reality' },
+            // Row 3 (requested)
+            { id: 'ai', name: 'AI', icon: '/images/apps/ai.png', href: '/ai', gradient: 'from-emerald-500 to-teal-600', description: 'Artificial Intelligence' },
+            { id: 'av', name: 'AV', icon: '/images/apps/av.png', href: '/av', gradient: 'from-amber-500 to-orange-600', description: 'Autonomous/Audio-Visual' },
+            { id: 'computer', name: 'Computer', icon: '/images/apps/computer.png', href: '/computer', gradient: 'from-blue-600 to-indigo-700', description: 'Computer Science' },
+            { id: 'it', name: 'IT', icon: '/images/apps/it.png', href: '/it', gradient: 'from-cyan-600 to-blue-700', description: 'Information Technology' }
+        ],
 
-    // Board of Directors (uses same popup UI as apps, 4x2 grid)
-    'samsat' : [
-        // Row 1 (left to right)
-        //{ id: 'david-monroe', name: 'David Monroe', icon: '/davidmonroe.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
-        { id: 'dominic-papagni', name: 'Dominic Papagni', icon: '/dominicpapagni.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
-        { id: 'allison-levine', name: 'Allison Levine', icon: '/allisonlevine.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
-        { id: 'philip-nelson', name: 'Philip Nelson', icon: '/philipnelson.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
-        // Row 2 (left to right)
-        { id: 'ricardo-maldonado', name: 'Ricardo Maldonado', icon: '/ricardomaldonado.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
-        { id: 'raul-reyna', name: 'Raul Reyna', icon: '/raulreyna.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
-        { id: 'scott-gray', name: 'Scott Gray', icon: '/scottgray.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
-        { id: 'john-strieby', name: 'John Strieby', icon: '/johnstrieby.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' }
-    ],
+        // Board of Directors (uses same popup UI as apps, 4x2 grid)
+        'samsat': [
+            // Row 1 (left to right)
+            //{ id: 'david-monroe', name: 'David Monroe', icon: '/images/people/samsatbod/davidmonroe.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+            { id: 'dominic-papagni', name: 'Dominic Papagni', icon: '/images/people/samsatbod/dominicpapagni.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+            { id: 'allison-levine', name: 'Allison Levine', icon: '/images/people/samsatbod/allisonlevine.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+            { id: 'philip-nelson', name: 'Philip Nelson', icon: '/images/people/samsatbod/philipnelson.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+            // Row 2 (left to right)
+            { id: 'ricardo-maldonado', name: 'Ricardo Maldonado', icon: '/images/people/samsatbod/ricardomaldonado.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+            { id: 'raul-reyna', name: 'Raul Reyna', icon: '/images/people/samsatbod/raulreyna.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+            { id: 'scott-gray', name: 'Scott Gray', icon: '/images/people/samsatbod/scottgray.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' },
+            { id: 'john-strieby', name: 'John Strieby', icon: '/images/people/samsatbod/johnstrieby.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Board member' }
+        ],
 
-    // Port SA Leadership grid (3x4), uses available Port SA images
-    'portsa' : [
-        // Row 1
-        { id: 'abigail-ottmers', name: 'Abigail Ottmers', icon: '/abigailottmers.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
-        { id: 'adrienne-cox', name: 'Adrienne Cox', icon: '/adriennecox.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
-        { id: 'caroline-diaz', name: 'Caroline Diaz', icon: '/carolinediaz.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
-        { id: 'curtis-casey', name: 'Curtis Casey', icon: '/curtiscasey.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
-        // Row 2
-        { id: 'jim-perschbach', name: 'Jim Perschbach', icon: '/jimperschbach.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
-        { id: 'juan-antonio', name: 'Juan Antonio', icon: '/juanantonio.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
-        { id: 'marcel-johnson', name: 'Marcel Johnson', icon: '/marceljohnson.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
-        { id: 'paco-felici', name: 'Paco Felici', icon: '/pacofelici.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
-        // Row 3
-        { id: 'pat-cruzen', name: 'Pat Cruzen', icon: '/patcruzen.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
-        { id: 'ramon-flores', name: 'Ramon Flores', icon: '/ramonflores.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
-        { id: 'rick-crider', name: 'Rick Crider', icon: '/rickcrider.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
-        { id: 'will-garrett', name: 'Will Garrett', icon: '/willgarrett.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' }
-    ]
+        // Port SA Leadership grid (3x4), uses available Port SA images
+        'portsa': [
+            // Row 1
+            { id: 'abigail-ottmers', name: 'Abigail Ottmers', icon: '/images/people/portsa/abigailottmers.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+            { id: 'adrienne-cox', name: 'Adrienne Cox', icon: '/images/people/portsa/adriennecox.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+            { id: 'caroline-diaz', name: 'Caroline Diaz', icon: '/images/people/portsa/carolinediaz.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+            { id: 'curtis-casey', name: 'Curtis Casey', icon: '/images/people/portsa/curtiscasey.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+            // Row 2
+            { id: 'jim-perschbach', name: 'Jim Perschbach', icon: '/images/people/portsa/jimperschbach.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+            { id: 'juan-antonio', name: 'Juan Antonio', icon: '/images/people/portsa/juanantonio.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+            { id: 'marcel-johnson', name: 'Marcel Johnson', icon: '/images/people/portsa/marceljohnson.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+            { id: 'paco-felici', name: 'Paco Felici', icon: '/images/people/portsa/pacofelici.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+            // Row 3
+            { id: 'pat-cruzen', name: 'Pat Cruzen', icon: '/images/people/portsa/patcruzen.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+            { id: 'ramon-flores', name: 'Ramon Flores', icon: '/images/people/portsa/ramonflores.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+            { id: 'rick-crider', name: 'Rick Crider', icon: '/images/people/portsa/rickcrider.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' },
+            { id: 'will-garrett', name: 'Will Garrett', icon: '/images/people/portsa/willgarrett.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' }
+        ],
+
+        // DSEC - Shows article content instead of app grid
+        'dsec': []
+    };
+
+    // Map popup IDs to their titles
+    const popupTitles: { [key: string]: string } = {
+        'samsat': 'Board of Directors',
+        'portsa': 'Port SA Leadership',
+        'dsec': 'DSEC'
     };
 
     const handleAppClick = (app: AppTile) => {
-	setActivePopupID(app.id);
-	if(popupApps[app.id] != null){
-		setActiveApps(popupApps[app.id]);
-	}else{
-		setActiveApps([]);
-		console.log("Non apptiles not implemented.");
-	}
-	return;
+        // Don't open popup if href is '#' (people images) or if no popup exists
+        if (app.href === '#' || popupApps[app.id] == null) {
+            return;
+        }
+        // Track popup history - if we're opening a nested popup, save current popup to history
+        if (activePopupID) {
+            setPopupHistory([...popupHistory, activePopupID]);
+        }
+        setActivePopupID(app.id);
+        setActiveApps(popupApps[app.id]);
+        return;
+    };
+
+    const handlePopupClose = () => {
+        // If there's history, go back to previous popup
+        if (popupHistory.length > 0) {
+            const previousPopupID = popupHistory[popupHistory.length - 1];
+            const newHistory = popupHistory.slice(0, -1);
+            setPopupHistory(newHistory);
+            setActivePopupID(previousPopupID);
+            setActiveApps(popupApps[previousPopupID]);
+        } else {
+            // No history, close completely
+            setActivePopupID(null);
+            setActiveApps([]);
+            setPopupHistory([]);
+        }
     };
 
     const AppGridComponent = ({ apps }: { apps: AppTile[] }) => (
@@ -374,7 +404,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
         <div
             className="min-h-screen text-white flex flex-col relative"
             style={{
-                backgroundImage: 'url(/Background.png)',
+                backgroundImage: 'url(/images/background/Background.png)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center top',
                 backgroundRepeat: 'no-repeat',
@@ -433,7 +463,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                             <a href="/phone" className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200">
                                 <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
                                     <Image
-                                        src="/phone.png"
+                                        src="/images/apps/phone.png"
                                         alt="Phone"
                                         width={192}
                                         height={192}
@@ -446,7 +476,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                             <a href="/facetime" className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200">
                                 <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
                                     <Image
-                                        src="/facetime.png"
+                                        src="/images/apps/facetime.png"
                                         alt="FaceTime"
                                         width={192}
                                         height={192}
@@ -459,7 +489,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                             <a href="/messages" className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200">
                                 <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
                                     <Image
-                                        src="/messages.png"
+                                        src="/images/apps/messages.png"
                                         alt="Messages"
                                         width={192}
                                         height={192}
@@ -472,7 +502,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                             <a href="/mail" className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200">
                                 <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
                                     <Image
-                                        src="/mail.png"
+                                        src="/images/apps/mail.png"
                                         alt="Mail"
                                         width={192}
                                         height={192}
@@ -485,17 +515,17 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                     </div>
                 </div>
             </div>
-	
+
             {/* App Popup */}
-	    
-		<AppPopup
-			isOpen={activePopupID != null}
-			onClose={() => {setActivePopupID(null);}}
-			apps={activeApps}
-			title="Apps"
-                	onItemClick={(app) => {handleAppClick(app)}}
-		/>
-		
+
+            <AppPopup
+                isOpen={activePopupID != null}
+                onClose={handlePopupClose}
+                apps={activeApps}
+                title={activePopupID ? (popupTitles[activePopupID] || 'Apps') : 'Apps'}
+                onItemClick={(app) => { handleAppClick(app) }}
+            />
+
         </div>
     );
 }

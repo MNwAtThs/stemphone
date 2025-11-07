@@ -17,7 +17,7 @@ const stemSuperstarsApps: AppTile[] = [
     {
         id: 'stem-superstars',
         name: 'STEM Superstars',
-        icon: '/stem-superstars.png',
+        icon: '/images/apps/stem-superstars.png',
         href: '/stem-superstars',
         gradient: 'from-blue-500 to-purple-600',
         description: 'STEM education platform'
@@ -25,7 +25,7 @@ const stemSuperstarsApps: AppTile[] = [
     {
         id: 'nasa',
         name: 'NASA',
-        icon: '/nasa.png',
+        icon: '/images/apps/nasa.png',
         href: '/nasa',
         gradient: 'from-gray-800 to-blue-900',
         description: 'NASA space exploration'
@@ -33,7 +33,7 @@ const stemSuperstarsApps: AppTile[] = [
     {
         id: 'ieee',
         name: 'IEEE',
-        icon: '/ieee.png',
+        icon: '/images/apps/ieee.png',
         href: '/ieee',
         gradient: 'from-blue-600 to-indigo-700',
         description: 'IEEE engineering society'
@@ -41,7 +41,7 @@ const stemSuperstarsApps: AppTile[] = [
     {
         id: 'music',
         name: 'Music',
-        icon: '/music.png',
+        icon: '/images/apps/music.png',
         href: '/music',
         gradient: 'from-pink-500 to-red-500',
         description: 'Music and audio player'
@@ -49,7 +49,7 @@ const stemSuperstarsApps: AppTile[] = [
     {
         id: 'photos',
         name: 'Photos',
-        icon: '/photos.png',
+        icon: '/images/apps/photos.png',
         href: '/photos',
         gradient: 'from-green-500 to-emerald-500',
         description: 'Photo gallery'
@@ -57,7 +57,7 @@ const stemSuperstarsApps: AppTile[] = [
     {
         id: 'videos',
         name: 'Videos',
-        icon: '/videos.png',
+        icon: '/images/apps/videos.png',
         href: '/videos',
         gradient: 'from-red-500 to-pink-500',
         description: 'Video player'
@@ -65,7 +65,7 @@ const stemSuperstarsApps: AppTile[] = [
     {
         id: 'quizzes',
         name: 'Quizzes',
-        icon: '/quizzes.png',
+        icon: '/images/apps/quizzes.png',
         href: '/quizzes',
         gradient: 'from-purple-500 to-indigo-500',
         description: 'Educational quizzes'
@@ -73,7 +73,7 @@ const stemSuperstarsApps: AppTile[] = [
     {
         id: 'robot',
         name: 'Robot',
-        icon: '/robot.png',
+        icon: '/images/apps/robot.png',
         href: '/robot',
         gradient: 'from-gray-600 to-slate-700',
         description: 'Robot control'
@@ -81,7 +81,7 @@ const stemSuperstarsApps: AppTile[] = [
     {
         id: 'morsecode',
         name: 'Morse Code',
-        icon: '/morsecode.png',
+        icon: '/images/apps/morsecode.png',
         href: '/morsecode',
         gradient: 'from-blue-600 to-cyan-600',
         description: 'Morse code translator'
@@ -89,7 +89,7 @@ const stemSuperstarsApps: AppTile[] = [
     {
         id: 'calculator',
         name: 'Calculator',
-        icon: '/calculator.png',
+        icon: '/images/apps/calculator.png',
         href: '/calculator',
         gradient: 'from-slate-600 to-gray-700',
         description: 'Scientific calculator'
@@ -97,7 +97,7 @@ const stemSuperstarsApps: AppTile[] = [
     {
         id: 'games',
         name: 'Games',
-        icon: '/games.png',
+        icon: '/images/apps/games.png',
         href: '/games',
         gradient: 'from-purple-500 to-indigo-500',
         description: 'Educational games'
@@ -105,7 +105,7 @@ const stemSuperstarsApps: AppTile[] = [
     {
         id: 'dataflow',
         name: 'Data Flow',
-        icon: '/dataflow.png',
+        icon: '/images/apps/dataflow.png',
         href: '/dataflow',
         gradient: 'from-teal-500 to-cyan-500',
         description: 'Data visualization'
@@ -127,7 +127,7 @@ export default function StemSuperstars() {
         <div
             className="min-h-screen text-white flex flex-col relative"
             style={{
-                backgroundImage: 'url(/Background.png)',
+                backgroundImage: 'url(/images/background/Background.png)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center top',
                 backgroundRepeat: 'no-repeat',
