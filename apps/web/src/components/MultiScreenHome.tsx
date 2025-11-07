@@ -74,6 +74,7 @@ const originalApps: AppTile[] = [
         gradient: 'from-red-500 to-pink-500',
         description: 'Video player'
     },
+    /* DISABLED - Not implemented
     {
         id: 'quizzes',
         name: 'Quizzes',
@@ -82,14 +83,7 @@ const originalApps: AppTile[] = [
         gradient: 'from-purple-500 to-indigo-500',
         description: 'Educational quizzes'
     },
-    {
-        id: 'sammy',
-        name: 'Sammy',
-        icon: '/images/apps/robot.png',
-        href: '/robot',
-        gradient: 'from-gray-600 to-slate-700',
-        description: 'Robot control'
-    },
+    */
     {
         id: 'morsecode',
         name: 'Morse Code',
@@ -106,6 +100,7 @@ const originalApps: AppTile[] = [
         gradient: 'from-slate-600 to-gray-700',
         description: 'Scientific calculator'
     },
+    /* DISABLED - Not finished
     {
         id: 'games',
         name: 'Games',
@@ -114,6 +109,8 @@ const originalApps: AppTile[] = [
         gradient: 'from-purple-500 to-indigo-500',
         description: 'Educational games'
     },
+    */
+    /* DISABLED - No LEDs installed
     {
         id: 'dataflow',
         name: 'Data Flow',
@@ -122,6 +119,7 @@ const originalApps: AppTile[] = [
         gradient: 'from-teal-500 to-cyan-500',
         description: 'Data visualization'
     },
+    */
     {
         id: 'donate',
         name: 'Donate',
@@ -130,6 +128,7 @@ const originalApps: AppTile[] = [
         gradient: 'from-green-500 to-emerald-500',
         description: 'Support the project'
     },
+    /* DISABLED - No Pucklight installed
     {
         id: 'flashlight',
         name: 'Flashlight',
@@ -138,6 +137,7 @@ const originalApps: AppTile[] = [
         gradient: 'from-yellow-400 to-yellow-600',
         description: 'Screen flashlight'
     },
+    */
     {
         id: 'utsa-interns',
         name: 'UTSA Interns',
@@ -463,7 +463,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
 
     return (
         <div
-            className="min-h-screen text-white flex flex-col relative"
+            className="min-h text-white flex flex-col relative"
             style={{
                 backgroundImage: 'url(/images/background/Background.png)',
                 backgroundSize: 'cover',
