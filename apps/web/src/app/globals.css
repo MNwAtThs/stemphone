@@ -49,6 +49,46 @@ body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */
 }
 
+/* Music Player Animations */
+@keyframes scroll-text {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(calc(-100% + 100%));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Marquee animation for long song titles */
+.marquee-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 15s linear infinite;
+  will-change: transform;
+}
+
+.marquee-text:hover {
+  animation-play-state: paused;
+}
+
 /* Force background to show */
 #__next {
   background-image: url('/images/background/Background.png');
