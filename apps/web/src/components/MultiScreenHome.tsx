@@ -322,7 +322,31 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
         ],
 
         // DSEC - Shows article content instead of app grid
-        'dsec': []
+        'dsec': [],
+
+        // Music Player - Shows music player UI
+        'music': [],
+
+        // Robot - Shows robot image
+        'robot': [],
+
+        // Aviation - Shows aviation image
+        'aviation': [],
+
+        // Space - Shows space image
+        'space': [],
+
+        // AI - Shows AI image
+        'ai': [],
+
+        // NASA - Shows NASA photo gallery
+        'nasa': [],
+
+        // Photos - Shows photo gallery
+        'photos': [],
+
+        // Videos - Shows video gallery
+        'videos': []
     };
 
     // Map popup IDs to their titles
@@ -330,7 +354,15 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
         'samsat': 'Board of Directors',
         'portsa': 'Port SA Leadership',
         'ieee': 'IEEE',
-        'dsec': 'DSEC'
+        'dsec': 'DSEC',
+        'music': 'Music Player',
+        'robot': 'ROBOTS',
+        'aviation': 'AVIATION',
+        'space': 'SPACE',
+        'ai': 'ARTIFICIAL INTELLIGENCE',
+        'nasa': 'NASA Photo Gallery',
+        'photos': 'Photos',
+        'videos': 'Video'
     };
 
     const handleAppClick = (app: AppTile) => {

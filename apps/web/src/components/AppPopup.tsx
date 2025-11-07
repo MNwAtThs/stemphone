@@ -33,41 +33,41 @@ interface Track {
 const demoTracks: Track[] = [
     {
         id: '1',
-        title: 'Ambient Space',
-        artist: 'SAMSAT Audio',
+        title: 'Seven Nation TESLA COIL Army',
+        artist: 'SAMSAT Radio',
         duration: 180,
-        src: '/audio/ambient-space.mp3',
-        cover: '🌌'
+        src: '/audio/seven-nation-tesla-coil-army.mp3',
+        cover: '🎵'
     },
     {
         id: '2',
-        title: 'Ocean Waves',
-        artist: 'Nature Sounds',
+        title: 'AC/DC Thunderstruck - Tesla Coils',
+        artist: 'SAMSAT Radio',
         duration: 240,
-        src: '/audio/ocean-waves.mp3',
-        cover: '🌊'
+        src: '/audio/acdc-thunderstruck-tesla-coils.mp3',
+        cover: '🎵'
     },
     {
         id: '3',
-        title: 'Forest Birds',
-        artist: 'Nature Sounds',
+        title: 'He\'s a Pirate - Tesla Coils',
+        artist: 'SAMSAT Radio',
         duration: 200,
-        src: '/audio/forest-birds.mp3',
-        cover: '🌲'
+        src: '/audio/hes-a-pirate-tesla-coils.mp3',
+        cover: '🎵'
     },
     {
         id: '4',
-        title: 'Rain Drops',
-        artist: 'Relaxing Sounds',
+        title: 'Tesla Coils Radio',
+        artist: 'SAMSAT Radio',
         duration: 300,
-        src: '/audio/rain-drops.mp3',
-        cover: '🌧️'
+        src: '/audio/tesla-coils-radio.mp3',
+        cover: '🎵'
     }
 ];
 
 export function AppPopup({ isOpen, onClose, apps, onItemClick, title = 'STEM Superstars Apps' }: AppPopupProps) {
     const [pressedApp, setPressedApp] = useState<string | null>(null);
-    
+
     // Music player state
     const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -267,19 +267,6 @@ export function AppPopup({ isOpen, onClose, apps, onItemClick, title = 'STEM Sup
                     </div>
                 )}
 
-                {/* IEEE Logo for IEEE - Above the title */}
-                {title === 'IEEE' && (
-                    <div className="flex justify-center mb-6">
-                        <Image
-                            src="/images/logos/ieee_logo.png"
-                            alt="IEEE Logo"
-                            width={200}
-                            height={100}
-                            className="h-16 w-auto"
-                        />
-                    </div>
-                )}
-
                 {/* DSEC Logo for DSEC Article - Above the title */}
                 {title === 'DSEC' && (
                     <div className="flex justify-center mb-6">
@@ -411,179 +398,61 @@ export function AppPopup({ isOpen, onClose, apps, onItemClick, title = 'STEM Sup
                         </div>
                     </div>
                 ) : title === 'Music Player' ? (
-                    <div className="max-w-2xl mx-auto">
-                        {/* Album Cover and Track Info */}
-                        <div className="text-center mb-8">
-                            <div className="inline-block mb-4">
-                                <div className="w-64 h-64 rounded-2xl bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 shadow-2xl flex items-center justify-center overflow-hidden">
-                                    {currentTrack ? (
-                                        <div className="text-9xl">{currentTrack.cover || '🎵'}</div>
-                                    ) : (
-                                        <div className="text-9xl text-white/50">🎵</div>
-                                    )}
-                                </div>
+                    <div className="max-w-4xl mx-auto">
+                        {/* Header */}
+                        <div className="text-center mb-6">
+                            <h2 className="text-4xl font-bold text-purple-700 mb-2">SAMSAT RADIO</h2>
+                            <p className="text-purple-600 text-sm">(Click the Play Button to Start Click on Pause Button to Stop)</p>
+                        </div>
+
+                        {/* SAMSAT Logo */}
+                        <div className="flex justify-center mb-6">
+                            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-600 to-purple-800 shadow-xl flex items-center justify-center border-4 border-white">
+                                <Image
+                                    src="/images/logos/samsat_logo.png"
+                                    alt="SAMSAT Logo"
+                                    width={120}
+                                    height={120}
+                                    className="w-24 h-24 object-contain rounded-full"
+                                />
                             </div>
-                            {currentTrack && (
-                                <div className="mt-4 px-4">
-                                    <div className="flex items-center justify-center gap-3 mb-2">
-                                        <div className="flex-1 min-w-0 overflow-hidden relative h-8 flex items-center justify-center">
-                                            {currentTrack.title.length > 20 ? (
-                                                <div className="marquee-container w-full">
-                                                    <div className="marquee-text text-2xl font-bold text-gray-900">
-                                                        {currentTrack.title} • {currentTrack.title}
+                        </div>
+
+                        {/* Currently Playing Track */}
+                        {currentTrack && (
+                            <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-4 mb-6 border-2 border-purple-200">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex items-center gap-3 mb-1">
+                                            <div className="flex-1 min-w-0 overflow-hidden">
+                                                {currentTrack.title.length > 25 ? (
+                                                    <div className="marquee-container w-full">
+                                                        <div className="marquee-text text-xl font-bold text-purple-900">
+                                                            {currentTrack.title} • {currentTrack.title}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            ) : (
-                                                <div className="text-2xl font-bold text-gray-900">
-                                                    {currentTrack.title}
-                                                </div>
-                                            )}
-                                        </div>
-                                        <button
-                                            onClick={() => toggleLike(currentTrack.id)}
-                                            className="flex-shrink-0 p-2 hover:scale-110 transition-transform active:scale-95"
-                                            title={isLiked(currentTrack.id) ? "Unlike" : "Like"}
-                                        >
-                                            <svg 
-                                                className={`w-7 h-7 transition-all duration-200 ${
-                                                    isLiked(currentTrack.id) 
-                                                        ? 'text-red-500 fill-current scale-110' 
-                                                        : 'text-gray-400 hover:text-red-400'
-                                                }`}
-                                                fill={isLiked(currentTrack.id) ? "currentColor" : "none"}
-                                                stroke="currentColor"
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <p className="text-gray-600 text-lg">{currentTrack.artist}</p>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Player Controls */}
-                        <div className="bg-gray-50 rounded-2xl p-6 mb-6">
-                            {/* Progress Bar */}
-                            <div className="mb-6">
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max={currentTrack?.duration || 0}
-                                    value={currentTime}
-                                    onChange={handleSeek}
-                                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
-                                />
-                                <div className="flex justify-between text-sm text-gray-600 mt-1">
-                                    <span>{formatTime(currentTime)}</span>
-                                    <span>{formatTime(currentTrack?.duration || 0)}</span>
-                                </div>
-                            </div>
-
-                            {/* Control Buttons */}
-                            <div className="flex items-center justify-center space-x-6 mb-6">
-                                {/* Previous Track Button */}
-                                <button
-                                    onClick={playPreviousTrack}
-                                    className="p-3 rounded-full bg-white hover:bg-gray-100 shadow-md transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
-                                    disabled={!currentTrack}
-                                    title="Previous Track"
-                                >
-                                    <svg className="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z" />
-                                    </svg>
-                                </button>
-
-                                {/* Play/Pause Button */}
-                                <button
-                                    onClick={togglePlayPause}
-                                    className="p-5 rounded-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
-                                    disabled={!currentTrack}
-                                    title={isPlaying ? "Pause" : "Play"}
-                                >
-                                    {isPlaying ? (
-                                        <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                                        </svg>
-                                    ) : (
-                                        <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                                        </svg>
-                                    )}
-                                </button>
-
-                                {/* Next Track Button */}
-                                <button
-                                    onClick={playNextTrack}
-                                    className="p-3 rounded-full bg-white hover:bg-gray-100 shadow-md transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
-                                    disabled={!currentTrack}
-                                    title="Next Track"
-                                >
-                                    <svg className="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0011 6v2.798l-5.445-3.63z" />
-                                    </svg>
-                                </button>
-                            </div>
-
-                            {/* Volume Control */}
-                            <div className="flex items-center space-x-3">
-                                <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.793L4.617 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.617l3.766-3.793a1 1 0 011.617.793zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clipRule="evenodd" />
-                                </svg>
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="1"
-                                    step="0.01"
-                                    value={volume}
-                                    onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
-                                    className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
-                                />
-                                <span className="text-sm text-gray-600 w-12 text-right">{Math.round(volume * 100)}%</span>
-                            </div>
-                        </div>
-
-                        {/* Track List */}
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-900 mb-4">Available Tracks</h3>
-                            <div className="space-y-2 max-h-64 overflow-y-auto">
-                                {demoTracks.map((track) => (
-                                    <div
-                                        key={track.id}
-                                        onClick={() => playTrack(track)}
-                                        className={`w-full p-4 rounded-xl text-left transition-all duration-200 cursor-pointer ${
-                                            currentTrack?.id === track.id
-                                                ? 'bg-purple-100 border-2 border-purple-400'
-                                                : 'bg-gray-50 hover:bg-gray-100'
-                                        }`}
-                                    >
-                                        <div className="flex items-center space-x-4">
-                                            <div className="text-3xl">{track.cover}</div>
-                                            <div className="flex-1 min-w-0">
-                                                <h4 className="font-semibold text-gray-900 truncate">{track.title}</h4>
-                                                <p className="text-gray-600 text-sm">{track.artist}</p>
-                                                <p className="text-gray-500 text-xs">{formatTime(track.duration)}</p>
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                {currentTrack?.id === track.id && isPlaying && (
-                                                    <div className="text-2xl animate-pulse">🎵</div>
+                                                ) : (
+                                                    <div className="text-xl font-bold text-purple-900">
+                                                        {currentTrack.title}
+                                                    </div>
                                                 )}
+                                            </div>
+                                            <div className="flex items-center gap-2 flex-shrink-0">
+                                                <div className="bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-bold flex items-center gap-1">
+                                                    LIVE
+                                                    <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                                                </div>
                                                 <button
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        toggleLike(track.id);
-                                                    }}
+                                                    onClick={() => toggleLike(currentTrack.id)}
                                                     className="p-1 hover:scale-110 transition-transform"
-                                                    type="button"
+                                                    title={isLiked(currentTrack.id) ? "Unlike" : "Like"}
                                                 >
-                                                    <svg 
-                                                        className={`w-5 h-5 transition-colors ${
-                                                            isLiked(track.id) 
-                                                                ? 'text-red-500 fill-current' 
-                                                                : 'text-gray-400 hover:text-red-400'
-                                                        }`}
-                                                        fill={isLiked(track.id) ? "currentColor" : "none"}
+                                                    <svg
+                                                        className={`w-6 h-6 transition-all duration-200 ${isLiked(currentTrack.id)
+                                                            ? 'text-red-500 fill-current scale-110'
+                                                            : 'text-gray-400 hover:text-red-400'
+                                                            }`}
+                                                        fill={isLiked(currentTrack.id) ? "currentColor" : "none"}
                                                         stroke="currentColor"
                                                         viewBox="0 0 24 24"
                                                     >
@@ -593,7 +462,287 @@ export function AppPopup({ isOpen, onClose, apps, onItemClick, title = 'STEM Sup
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Player Controls */}
+                        <div className="bg-gray-50 rounded-2xl p-6 mb-6">
+                            {/* Control Buttons Row */}
+                            <div className="flex items-center justify-center space-x-4 mb-4">
+                                {/* Previous Track Button */}
+                                <button
+                                    onClick={playPreviousTrack}
+                                    className="p-3 rounded-full bg-white hover:bg-gray-100 shadow-md transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed text-purple-700"
+                                    disabled={!currentTrack}
+                                    title="Previous Track"
+                                >
+                                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z" />
+                                    </svg>
+                                </button>
+
+                                {/* Play/Pause Button */}
+                                <button
+                                    onClick={togglePlayPause}
+                                    className="p-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    disabled={!currentTrack}
+                                    title={isPlaying ? "Pause" : "Play"}
+                                >
+                                    {isPlaying ? (
+                                        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                                        </svg>
+                                    ) : (
+                                        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                                        </svg>
+                                    )}
+                                </button>
+
+                                {/* Next Track Button */}
+                                <button
+                                    onClick={playNextTrack}
+                                    className="p-3 rounded-full bg-white hover:bg-gray-100 shadow-md transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed text-purple-700"
+                                    disabled={!currentTrack}
+                                    title="Next Track"
+                                >
+                                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0011 6v2.798l-5.445-3.63z" />
+                                    </svg>
+                                </button>
+
+                                {/* Volume Button */}
+                                <button
+                                    className="p-3 rounded-full bg-white hover:bg-gray-100 shadow-md transition-all hover:scale-110 text-purple-700"
+                                    title="Volume"
+                                >
+                                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.793L4.617 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.617l3.766-3.793a1 1 0 011.617.793zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clipRule="evenodd" />
+                                    </svg>
+                                </button>
+
+                                {/* Share Button */}
+                                <button
+                                    className="p-3 rounded-full bg-white hover:bg-gray-100 shadow-md transition-all hover:scale-110 text-purple-700"
+                                    title="Share"
+                                >
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342c-.346 0-.654.11-.88.29l-4.88 3.88a1 1 0 01-1.414-1.414l4.88-3.88c.226-.18.534-.29.88-.29h6.632c.346 0 .654.11.88.29l4.88 3.88a1 1 0 011.414 1.414l-4.88 3.88c-.226.18-.534.29-.88.29H8.684zM15.316 10.658c.346 0 .654-.11.88-.29l4.88-3.88a1 1 0 011.414 1.414l-4.88 3.88c-.226.18-.534.29-.88.29H8.684c-.346 0-.654-.11-.88-.29l-4.88-3.88a1 1 0 011.414-1.414l4.88 3.88c.226.18.534.29.88.29h6.632z" />
+                                    </svg>
+                                </button>
+
+                                {/* Playlist Button */}
+                                <button
+                                    className="p-3 rounded-full bg-white hover:bg-gray-100 shadow-md transition-all hover:scale-110 text-purple-700"
+                                    title="Playlist"
+                                >
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            {/* Volume Control */}
+                            <div className="flex items-center justify-center space-x-3 mt-4">
+                                <svg className="w-5 h-5 text-purple-700" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.793L4.617 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.617l3.766-3.793a1 1 0 011.617.793zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clipRule="evenodd" />
+                                </svg>
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max="1"
+                                    step="0.01"
+                                    value={volume}
+                                    onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
+                                    className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600 max-w-xs"
+                                />
+                                <span className="text-sm text-purple-700 w-12 text-right font-semibold">{Math.round(volume * 100)}%</span>
+                            </div>
+
+                            {/* Progress Bar */}
+                            {currentTrack && (
+                                <div className="mt-4">
+                                    <input
+                                        type="range"
+                                        min="0"
+                                        max={currentTrack.duration || 0}
+                                        value={currentTime}
+                                        onChange={handleSeek}
+                                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                                    />
+                                    <div className="flex justify-between text-sm text-purple-700 mt-1">
+                                        <span>{formatTime(currentTime)}</span>
+                                        <span>{formatTime(currentTrack.duration || 0)}</span>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Track List */}
+                        <div>
+                            <div className="space-y-2 max-h-64 overflow-y-auto">
+                                {demoTracks.map((track) => (
+                                    <div
+                                        key={track.id}
+                                        className={`w-full p-3 rounded-xl transition-all duration-200 ${currentTrack?.id === track.id
+                                            ? 'bg-purple-100 border-2 border-purple-400'
+                                            : 'bg-gray-50 hover:bg-gray-100'
+                                            }`}
+                                    >
+                                        <div className="flex items-center space-x-3">
+                                            {/* Track Logo */}
+                                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center flex-shrink-0">
+                                                <Image
+                                                    src="/images/logos/samsat_logo.png"
+                                                    alt="SAMSAT"
+                                                    width={32}
+                                                    height={32}
+                                                    className="w-8 h-8 object-contain"
+                                                />
+                                            </div>
+                                            {/* Track Info */}
+                                            <div className="flex-1 min-w-0">
+                                                <h4 className="font-semibold text-gray-900 truncate">{track.title}</h4>
+                                            </div>
+                                            {/* Play Button */}
+                                            <button
+                                                onClick={() => playTrack(track)}
+                                                className="p-2 rounded-full bg-purple-600 hover:bg-purple-700 text-white transition-all hover:scale-110 flex-shrink-0"
+                                                title="Play Track"
+                                            >
+                                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 ))}
+                            </div>
+                        </div>
+                    </div>
+                ) : title === 'Photos' ? (
+                    <div className="max-w-4xl mx-auto">
+                        {/* Photo Grid - 2x2 Square */}
+                        <div className="grid grid-cols-2 gap-6">
+                            <div className="relative group">
+                                <div className="aspect-square overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                    <Image
+                                        src="/images/graphics/Samsat-photos1-1.png"
+                                        alt="SAMSAT Photo 1"
+                                        width={600}
+                                        height={600}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                            </div>
+                            <div className="relative group">
+                                <div className="aspect-square overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                    <Image
+                                        src="/images/graphics/Samsat-photos2-1.png"
+                                        alt="SAMSAT Photo 2"
+                                        width={600}
+                                        height={600}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                            </div>
+                            <div className="relative group">
+                                <div className="aspect-square overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                    <Image
+                                        src="/images/graphics/Samsat-photos3.png"
+                                        alt="SAMSAT Photo 3"
+                                        width={600}
+                                        height={600}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                            </div>
+                            <div className="relative group">
+                                <div className="aspect-square overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                    <Image
+                                        src="/images/graphics/Samsat-photos4.png"
+                                        alt="SAMSAT Photo 4"
+                                        width={600}
+                                        height={600}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ) : title === 'Video' ? (
+                    <div className="max-w-5xl mx-auto">
+                        {/* Video Grid - 2 columns, 3 rows */}
+                        <div className="grid grid-cols-2 gap-6">
+                            {/* Row 1 */}
+                            <div className="relative group">
+                                <div className="aspect-video overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-900">
+                                    <iframe
+                                        className="w-full h-full"
+                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        title="Video 1"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                            <div className="relative group">
+                                <div className="aspect-video overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-900">
+                                    <iframe
+                                        className="w-full h-full"
+                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        title="Video 2"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                            {/* Row 2 */}
+                            <div className="relative group">
+                                <div className="aspect-video overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-900">
+                                    <iframe
+                                        className="w-full h-full"
+                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        title="Video 3"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                            <div className="relative group">
+                                <div className="aspect-video overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-900">
+                                    <iframe
+                                        className="w-full h-full"
+                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        title="Video 4"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                            {/* Row 3 */}
+                            <div className="relative group">
+                                <div className="aspect-video overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-900">
+                                    <iframe
+                                        className="w-full h-full"
+                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        title="Video 5"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                            <div className="relative group">
+                                <div className="aspect-video overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-900">
+                                    <iframe
+                                        className="w-full h-full"
+                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        title="Video 6"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
