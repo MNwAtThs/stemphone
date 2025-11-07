@@ -463,7 +463,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
 
     return (
         <div
-            className="min-h text-white flex flex-col relative"
+            className="h-[1920px] text-white flex flex-col relative"
             style={{
                 backgroundImage: 'url(/images/background/Background.png)',
                 backgroundSize: 'cover',
