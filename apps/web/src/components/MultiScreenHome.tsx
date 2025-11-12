@@ -74,7 +74,7 @@ const originalApps: AppTile[] = [
         gradient: 'from-red-500 to-pink-500',
         description: 'Video player'
     },
-    /* DISABLED - Not implemented
+
     {
         id: 'quizzes',
         name: 'Quizzes',
@@ -83,7 +83,15 @@ const originalApps: AppTile[] = [
         gradient: 'from-purple-500 to-indigo-500',
         description: 'Educational quizzes'
     },
-    */
+    {
+        id: 'robot',
+        name: 'SAMMY',
+        icon: '/images/apps/robot.png',
+        href: '/robot',
+        gradient: 'from-gray-600 to-slate-700',
+        description: 'Robot control'
+    },
+
     {
         id: 'morsecode',
         name: 'Morse Code',
@@ -100,7 +108,7 @@ const originalApps: AppTile[] = [
         gradient: 'from-slate-600 to-gray-700',
         description: 'Scientific calculator'
     },
-    /* DISABLED - Not finished
+
     {
         id: 'games',
         name: 'Games',
@@ -109,8 +117,7 @@ const originalApps: AppTile[] = [
         gradient: 'from-purple-500 to-indigo-500',
         description: 'Educational games'
     },
-    */
-    /* DISABLED - No LEDs installed
+
     {
         id: 'dataflow',
         name: 'Data Flow',
@@ -119,7 +126,7 @@ const originalApps: AppTile[] = [
         gradient: 'from-teal-500 to-cyan-500',
         description: 'Data visualization'
     },
-    */
+
     {
         id: 'donate',
         name: 'Donate',
@@ -128,7 +135,7 @@ const originalApps: AppTile[] = [
         gradient: 'from-green-500 to-emerald-500',
         description: 'Support the project'
     },
-    /* DISABLED - No Pucklight installed
+
     {
         id: 'flashlight',
         name: 'Flashlight',
@@ -137,7 +144,7 @@ const originalApps: AppTile[] = [
         gradient: 'from-yellow-400 to-yellow-600',
         description: 'Screen flashlight'
     },
-    */
+
     {
         id: 'utsa-interns',
         name: 'UTSA Interns',
@@ -253,13 +260,29 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
     };
 
     const popupApps: PopupDictionary = {
+        // Quizzes popup - appears first
+        'quizzes': [
+            // Row 1
+            { id: 'cybersecurity', name: 'Cybersecurity', icon: '/images/apps/cybersecurity.png', href: '/cybersecurity', gradient: 'from-slate-600 to-gray-700', description: 'Cybersecurity' },
+            { id: 'augmented-reality', name: 'Augmented Reality', icon: '/images/apps/augmentedreality.png', href: '/augmented-reality', gradient: 'from-fuchsia-500 to-purple-600', description: 'Augmented Reality' },
+            { id: 'autonomous-vehicle', name: 'Autonomous Vehicle', icon: '/images/apps/autonomous vehicle.png', href: '/autonomous-vehicle', gradient: 'from-amber-500 to-orange-600', description: 'Autonomous Vehicle' },
+            { id: 'advanced-manufacturing', name: 'Advanced Manufacturing', icon: '/images/apps/advancedmanufacturing.png', href: '/advanced-manufacturing', gradient: 'from-blue-600 to-indigo-700', description: 'Advanced Manufacturing' },
+            // Row 2
+            { id: 'tesla-coils', name: 'Tesla Coils', icon: '/images/apps/teslacoil.png', href: '/tesla-coils', gradient: 'from-pink-500 to-red-500', description: 'Tesla Coils' },
+            { id: 'critical-infrastructure', name: 'Critical Infrastructure', icon: '/images/apps/criticalinfrastructure.png', href: '/critical-infrastructure', gradient: 'from-teal-500 to-cyan-500', description: 'Critical Infrastructure' },
+            { id: 'stemclipse-i', name: 'STEMclipse I', icon: '/images/apps/stemclipse1.png', href: '/stemclipse-i', gradient: 'from-purple-600 to-indigo-700', description: 'STEMclipse I' },
+            { id: 'stemclipse-ii', name: 'STEMclipse II', icon: '/images/apps/stemclipse2.png', href: '/stemclipse-ii', gradient: 'from-purple-600 to-indigo-700', description: 'STEMclipse II' },
+            // Row 3
+            { id: 'dsec-quiz', name: 'DSEC', icon: '/images/apps/dsec.png', href: '/dsec', gradient: 'from-slate-600 to-gray-700', description: 'DSEC' },
+        ],
+
         // Popup app ordering: Row 1 (requested) then Row 2 (requested), then rest
         'stem-superstars': [
             // Row 1
             { id: 'samsat', name: 'SAMSAT', icon: '/images/apps/samsat.png', href: '/samsat', gradient: 'from-blue-500 to-indigo-600', description: 'SAMSAT' },
             { id: 'portsa', name: 'Port SA', icon: '/images/apps/portsa.png', href: '/portsa', gradient: 'from-teal-500 to-cyan-600', description: 'Port San Antonio' },
             { id: 'dsec', name: 'DSEC', icon: '/images/apps/dsec.png', href: '/dsec', gradient: 'from-slate-600 to-gray-700', description: 'Cybersecurity DSEC' },
-            { id: 'robot', name: 'Robot', icon: '/images/apps/robot.png', href: '/robot', gradient: 'from-gray-600 to-slate-700', description: 'Robot control' },
+            { id: 'robots', name: 'Robot', icon: '/images/apps/robot.png', href: '/robot', gradient: 'from-gray-600 to-slate-700', description: 'Robot control' },
             // Row 2
             { id: 'aviation', name: 'Aviation', icon: '/images/apps/aviation.png', href: '/aviation', gradient: 'from-sky-500 to-indigo-600', description: 'Aviation' },
             { id: 'space', name: 'Space', icon: '/images/apps/space.png', href: '/space', gradient: 'from-purple-600 to-indigo-700', description: 'Space' },
@@ -305,7 +328,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
             { id: 'will-garrett', name: 'Will Garrett', icon: '/images/people/portsa/willgarrett.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'Port SA leader' }
         ],
 
-	//IEEE
+        //IEEE
         'ieee': [
             // Row 1
             { id: 'walt-downing', name: 'Walt Downing', icon: '/images/people/ieee/waltdowning.png', href: '#', gradient: 'from-gray-200 to-gray-300', description: 'IEEE Member' },
@@ -327,8 +350,48 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
         // Music Player - Shows music player UI
         'music': [],
 
-        // Robot - Shows robot image
+        // Calculator - Shows calculator UI
+        'calculator': [],
+
+        // Games - Shows game apps
+        'games': [
+            // Row 1
+            { id: 'game-1', name: 'Game 1', icon: '/images/apps/games.png', href: '#', gradient: 'from-purple-500 to-indigo-500', description: 'Educational game' },
+            { id: 'game-2', name: 'Game 2', icon: '/images/apps/games.png', href: '#', gradient: 'from-purple-500 to-indigo-500', description: 'Educational game' },
+            // Row 2
+            { id: 'game-3', name: 'Game 3', icon: '/images/apps/games.png', href: '#', gradient: 'from-purple-500 to-indigo-500', description: 'Educational game' },
+            { id: 'game-4', name: 'Game 4', icon: '/images/apps/games.png', href: '#', gradient: 'from-purple-500 to-indigo-500', description: 'Educational game' },
+            // Row 3
+            { id: 'game-5', name: 'Game 5', icon: '/images/apps/games.png', href: '#', gradient: 'from-purple-500 to-indigo-500', description: 'Educational game' },
+            { id: 'game-6', name: 'Game 6', icon: '/images/apps/games.png', href: '#', gradient: 'from-purple-500 to-indigo-500', description: 'Educational game' },
+        ],
+
+        // Data Flow - Shows Pattern Generation
+        'dataflow': [],
+
+        // Flashlight - Shows flashlight toggle
+        'flashlight': [],
+
+        // UTSA Interns - Shows intern information
+        'utsa-interns': [],
+
+        // Phone - Shows phone interface
+        'phone': [],
+
+        // FaceTime - Shows FaceTime interface
+        'facetime': [],
+
+        // Messages - Shows messages interface
+        'messages': [],
+
+        // Mail - Shows mail interface
+        'mail': [],
+
+        // Robot - Shows SAMMY robot popup (for home page)
         'robot': [],
+
+        // Robot - Shows robot image (for stem-superstars)
+        'robots': [],
 
         // Aviation - Shows aviation image
         'aviation': [],
@@ -348,47 +411,61 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
         // Videos - Shows video gallery
         'videos': [],
 
-	// Sammy - Shows Sammy image
-	'sammy': [],
+        // Sammy - Shows Sammy image
+        'sammy': [],
 
-	// Donate - Shows donate gallery
-	'donate': [],
+        // Donate - Shows donate gallery
+        'donate': [],
 
-	// Sammy - Shows Sammy image
-	'morsecode': [],
+        // Sammy - Shows Sammy image
+        'morsecode': [],
     };
 
     // Map popup IDs to their titles
     const popupTitles: { [key: string]: string } = {
+        'quizzes': 'Quizzes',
         'samsat': 'Board of Directors',
         'portsa': 'Port SA Leadership',
         'ieee': 'IEEE',
         'dsec': 'DSEC',
         'music': 'Music Player',
-        'robot': 'ROBOTS',
-	'sammy': 'Sammy',
+        'calculator': 'Calculator',
+        'games': 'Games',
+        'dataflow': 'Pattern Generation',
+        'flashlight': 'Flashlight',
+        'utsa-interns': 'UTSA Interns',
+        'phone': 'Phone',
+        'facetime': 'FaceTime',
+        'messages': 'Messages',
+        'mail': 'Mail',
+        'robot': 'SAMMY',
+        'robots': 'ROBOTS',
+        'sammy': 'Sammy',
         'aviation': 'AVIATION',
         'space': 'SPACE',
         'ai': 'ARTIFICIAL INTELLIGENCE',
         'nasa': 'NASA Photo Gallery',
         'photos': 'Photos',
         'videos': 'Video',
-	'donate': 'Donate to Samsat',
-	'morsecode': 'Learn Morse Code',
+        'donate': 'Donate to Samsat',
+        'morsecode': 'Learn Morse Code',
     };
 
     const handleAppClick = (app: AppTile) => {
+        // If popup exists, open it (ignore href check for popups)
+        if (popupApps[app.id] != null) {
+            // Track popup history - if we're opening a nested popup, save current popup to history
+            if (activePopupID) {
+                setPopupHistory([...popupHistory, activePopupID]);
+            }
+            setActivePopupID(app.id);
+            setActiveApps(popupApps[app.id]);
+            return;
+        }
         // Don't open popup if href is '#' (people images) or if no popup exists
         if (app.href === '#' || popupApps[app.id] == null) {
             return;
         }
-        // Track popup history - if we're opening a nested popup, save current popup to history
-        if (activePopupID) {
-            setPopupHistory([...popupHistory, activePopupID]);
-        }
-        setActivePopupID(app.id);
-        setActiveApps(popupApps[app.id]);
-        return;
     };
 
     const handlePopupClose = () => {
@@ -521,7 +598,10 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
 
                     <div className="bg-white/10 backdrop-blur-md rounded-3xl p-3 border border-white/20 shadow-2xl w-fit mx-auto max-w-full overflow-hidden">
                         <div className="flex justify-center space-x-5 w-fit">
-                            <a href="/phone" className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200">
+                            <button
+                                onClick={() => handleAppClick({ id: 'phone', name: 'Phone', icon: '/images/apps/phone.png', href: '/phone', gradient: '', description: '' })}
+                                className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200"
+                            >
                                 <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
                                     <Image
                                         src="/images/apps/phone.png"
@@ -532,9 +612,12 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                                     />
                                 </div>
                                 <span className="text-2xl text-white font-medium">Phone</span>
-                            </a>
+                            </button>
 
-                            <a href="/facetime" className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200">
+                            <button
+                                onClick={() => handleAppClick({ id: 'facetime', name: 'FaceTime', icon: '/images/apps/facetime.png', href: '/facetime', gradient: '', description: '' })}
+                                className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200"
+                            >
                                 <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
                                     <Image
                                         src="/images/apps/facetime.png"
@@ -545,9 +628,12 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                                     />
                                 </div>
                                 <span className="text-2xl text-white font-medium">FaceTime</span>
-                            </a>
+                            </button>
 
-                            <a href="/messages" className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200">
+                            <button
+                                onClick={() => handleAppClick({ id: 'messages', name: 'Messages', icon: '/images/apps/messages.png', href: '/messages', gradient: '', description: '' })}
+                                className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200"
+                            >
                                 <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
                                     <Image
                                         src="/images/apps/messages.png"
@@ -558,9 +644,12 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                                     />
                                 </div>
                                 <span className="text-2xl text-white font-medium">Messages</span>
-                            </a>
+                            </button>
 
-                            <a href="/mail" className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200">
+                            <button
+                                onClick={() => handleAppClick({ id: 'mail', name: 'Mail', icon: '/images/apps/mail.png', href: '/mail', gradient: '', description: '' })}
+                                className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200"
+                            >
                                 <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
                                     <Image
                                         src="/images/apps/mail.png"
@@ -571,7 +660,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                                     />
                                 </div>
                                 <span className="text-2xl text-white font-medium">Mail</span>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
