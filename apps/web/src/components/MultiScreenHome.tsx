@@ -543,7 +543,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
 
     return (
         <div
-            className="h-screen w-screen text-white flex flex-col relative"
+            className="h-screen w-screen text-white flex flex-col relative overflow-hidden"
             style={{
                 backgroundImage: 'url(/images/background/Background.png)',
                 backgroundSize: 'cover',
@@ -583,7 +583,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                 {/* Screen Indicator Dots removed (kept only the set near the dock) */}
 
                 {/* Navigation Dots and Dock */}
-                <div className="px-0 pt-96 pb-8">
+                <div className="px-0 pb-4 mt-auto">
                     {/* Screen Indicator Dots */}
                     <div className="flex justify-center space-x-2 py-4">
                         {homeScreens.map((_, index) => (
