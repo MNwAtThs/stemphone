@@ -485,7 +485,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
     };
 
     const AppGridComponent = ({ apps }: { apps: AppTile[] }) => (
-        <div className="grid grid-cols-4 gap-16 w-fit mx-auto">
+        <div className="grid grid-cols-4 gap-[4vw] w-full max-w-full mx-auto px-[2vw]">
             {apps.map((app) => (
                 <div
                     key={app.id}
@@ -494,28 +494,31 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                         relative group block cursor-pointer
                         transform transition-all duration-150 ease-out
                         hover:scale-105 active:scale-95
+                        flex flex-col items-center
                     `}
                 >
                     {/* App Icon Container */}
-                    <div className="relative">
+                    <div className="relative w-full">
                         {/* Icon Background */}
                         <div className={`
-                            w-56 h-56 rounded-3xl
+                            w-[15vw] h-[15vw] min-w-[160px] min-h-[160px] max-w-[280px] max-h-[280px]
+                            rounded-3xl
                             flex items-center justify-center
                             shadow-lg group-hover:shadow-xl
                             transition-all duration-200
+                            mx-auto
                         `}>
                             {app.icon.startsWith('/') ? (
                                 <Image
                                     src={app.icon}
                                     alt={app.name}
-                                    width={224}
-                                    height={224}
-                                    className="w-56 h-56 object-contain rounded-3xl"
+                                    width={280}
+                                    height={280}
+                                    className="w-full h-full object-contain rounded-3xl"
                                 />
                             ) : (
-                                <div className={`w-56 h-56 rounded-3xl bg-gradient-to-br ${app.gradient} flex items-center justify-center`}>
-                                    <span className="text-9xl">{app.icon}</span>
+                                <div className={`w-full h-full rounded-3xl bg-gradient-to-br ${app.gradient} flex items-center justify-center`}>
+                                    <span style={{ fontSize: 'clamp(4rem, 8vw, 9rem)' }}>{app.icon}</span>
                                 </div>
                             )}
                         </div>
@@ -523,8 +526,8 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                     </div>
 
                     {/* App Name */}
-                    <div className="mt-8 text-center">
-                        <span className="text-white text-3xl font-medium leading-tight block">
+                    <div className="mt-[2vw] text-center w-full">
+                        <span className="text-white font-medium leading-tight block" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.875rem)' }}>
                             {app.name}
                         </span>
                     </div>
@@ -540,14 +543,13 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
 
     return (
         <div
-            className="h-[1920px] text-white flex flex-col relative"
+            className="h-screen w-screen text-white flex flex-col relative"
             style={{
                 backgroundImage: 'url(/images/background/Background.png)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center top',
                 backgroundRepeat: 'no-repeat',
-                backgroundAttachment: 'fixed',
-                minHeight: '300vh'
+                backgroundAttachment: 'fixed'
             }}
         >
             {/* Main Content */}
@@ -596,70 +598,70 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
                         ))}
                     </div>
 
-                    <div className="bg-white/10 backdrop-blur-md rounded-3xl p-3 border border-white/20 shadow-2xl w-fit mx-auto max-w-full overflow-hidden">
-                        <div className="flex justify-center space-x-5 w-fit">
+                    <div className="bg-white/10 backdrop-blur-md rounded-3xl p-[0.75vw] border border-white/20 shadow-2xl w-fit mx-auto max-w-full overflow-hidden">
+                        <div className="flex justify-center gap-[1.5vw] w-fit">
                             <button
                                 onClick={() => handleAppClick({ id: 'phone', name: 'Phone', icon: '/images/apps/phone.png', href: '/phone', gradient: '', description: '' })}
-                                className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200"
+                                className="flex flex-col items-center gap-[0.75vw] p-[0.75vw] rounded-2xl hover:bg-white/20 transition-all duration-200"
                             >
-                                <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
+                                <div className="w-[15vw] h-[15vw] min-w-[160px] min-h-[160px] max-w-[280px] max-h-[280px] rounded-3xl flex items-center justify-center">
                                     <Image
                                         src="/images/apps/phone.png"
                                         alt="Phone"
-                                        width={192}
-                                        height={192}
-                                        className="w-48 h-48 object-contain rounded-3xl"
+                                        width={280}
+                                        height={280}
+                                        className="w-full h-full object-contain rounded-3xl"
                                     />
                                 </div>
-                                <span className="text-2xl text-white font-medium">Phone</span>
+                                <span className="text-white font-medium" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.5rem)' }}>Phone</span>
                             </button>
 
                             <button
                                 onClick={() => handleAppClick({ id: 'facetime', name: 'FaceTime', icon: '/images/apps/facetime.png', href: '/facetime', gradient: '', description: '' })}
-                                className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200"
+                                className="flex flex-col items-center gap-[0.75vw] p-[0.75vw] rounded-2xl hover:bg-white/20 transition-all duration-200"
                             >
-                                <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
+                                <div className="w-[15vw] h-[15vw] min-w-[160px] min-h-[160px] max-w-[280px] max-h-[280px] rounded-3xl flex items-center justify-center">
                                     <Image
                                         src="/images/apps/facetime.png"
                                         alt="FaceTime"
-                                        width={192}
-                                        height={192}
-                                        className="w-48 h-48 object-contain rounded-3xl"
+                                        width={280}
+                                        height={280}
+                                        className="w-full h-full object-contain rounded-3xl"
                                     />
                                 </div>
-                                <span className="text-2xl text-white font-medium">FaceTime</span>
+                                <span className="text-white font-medium" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.5rem)' }}>FaceTime</span>
                             </button>
 
                             <button
                                 onClick={() => handleAppClick({ id: 'messages', name: 'Messages', icon: '/images/apps/messages.png', href: '/messages', gradient: '', description: '' })}
-                                className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200"
+                                className="flex flex-col items-center gap-[0.75vw] p-[0.75vw] rounded-2xl hover:bg-white/20 transition-all duration-200"
                             >
-                                <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
+                                <div className="w-[15vw] h-[15vw] min-w-[160px] min-h-[160px] max-w-[280px] max-h-[280px] rounded-3xl flex items-center justify-center">
                                     <Image
                                         src="/images/apps/messages.png"
                                         alt="Messages"
-                                        width={192}
-                                        height={192}
-                                        className="w-48 h-48 object-contain rounded-3xl"
+                                        width={280}
+                                        height={280}
+                                        className="w-full h-full object-contain rounded-3xl"
                                     />
                                 </div>
-                                <span className="text-2xl text-white font-medium">Messages</span>
+                                <span className="text-white font-medium" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.5rem)' }}>Messages</span>
                             </button>
 
                             <button
                                 onClick={() => handleAppClick({ id: 'mail', name: 'Mail', icon: '/images/apps/mail.png', href: '/mail', gradient: '', description: '' })}
-                                className="flex flex-col items-center gap-3 p-3 rounded-2xl hover:bg-white/20 transition-all duration-200"
+                                className="flex flex-col items-center gap-[0.75vw] p-[0.75vw] rounded-2xl hover:bg-white/20 transition-all duration-200"
                             >
-                                <div className="w-48 h-48 rounded-3xl flex items-center justify-center">
+                                <div className="w-[15vw] h-[15vw] min-w-[160px] min-h-[160px] max-w-[280px] max-h-[280px] rounded-3xl flex items-center justify-center">
                                     <Image
                                         src="/images/apps/mail.png"
                                         alt="Mail"
-                                        width={192}
-                                        height={192}
-                                        className="w-48 h-48 object-contain rounded-3xl"
+                                        width={280}
+                                        height={280}
+                                        className="w-full h-full object-contain rounded-3xl"
                                     />
                                 </div>
-                                <span className="text-2xl text-white font-medium">Mail</span>
+                                <span className="text-white font-medium" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.5rem)' }}>Mail</span>
                             </button>
                         </div>
                     </div>

@@ -43,10 +43,29 @@ body::-webkit-scrollbar {
 * {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
+  /* Disable text selection for kiosk mode */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+  user-select: none; /* Standard */
+  /* Disable tap highlight on touch devices */
+  -webkit-tap-highlight-color: transparent;
+  /* Disable touch callout on iOS */
+  -webkit-touch-callout: none;
 }
 
 *::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */
+}
+
+/* Allow text selection for input fields and textareas */
+input,
+textarea,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 /* Music Player Animations */
