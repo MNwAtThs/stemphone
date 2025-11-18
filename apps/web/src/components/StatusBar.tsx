@@ -46,7 +46,7 @@ export function StatusBar() {
     }, []);
 
     return (
-        <div className="flex justify-between items-center px-6 py-3 text-sm relative z-20 max-w-6xl mx-auto">
+        <div className="flex justify-between items-center px-[2vw] text-sm relative z-20 w-full max-w-5xl mx-auto">
             {/* Left side - Time and Date */}
             <div className="flex items-center gap-3">
                 <div className="bg-white rounded-2xl px-6 py-3 shadow-lg ring-2 ring-gray-300 ring-inset">
@@ -57,15 +57,14 @@ export function StatusBar() {
                         }) + ' ' + currentTime.toLocaleTimeString('en-US', {
                             hour: '2-digit',
                             minute: '2-digit',
-                            second: '2-digit',
-                            hour12: false
-                        }) : '--:--:--'}
+                            hour12: true
+                        }) : '--:--'}
                     </span>
                 </div>
             </div>
 
             {/* Right side - Status Bar Image */}
-            <div className="flex items-center mt-2 ml-32">
+            <div className="flex items-center gap-4">
                 <Image
                     src="/images/graphics/statusbar.png"
                     alt="Status Bar"
