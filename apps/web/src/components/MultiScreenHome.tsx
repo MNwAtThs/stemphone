@@ -439,7 +439,7 @@ export function MultiScreenHome({ currentTime }: MultiScreenHomeProps) {
         'messages': 'Messages',
         'mail': 'Mail',
         'robot': 'SAMMY',
-        'robots': 'ROBOTS',
+        'robots': 'Robots',
         'sammy': 'Sammy',
         'aviation': 'AVIATION',
         'space': 'SPACE',
