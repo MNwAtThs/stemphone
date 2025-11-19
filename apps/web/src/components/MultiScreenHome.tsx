@@ -94,7 +94,7 @@ const originalApps: AppTile[] = [
 
     {
         id: 'morsecode',
-        name: 'Morse Code',
+        name: 'Morse-Code',
         icon: '/images/apps/morsecode.png',
         href: '/morsecode',
         gradient: 'from-blue-600 to-cyan-600',
